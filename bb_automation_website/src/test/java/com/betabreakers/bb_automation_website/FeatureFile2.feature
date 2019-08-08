@@ -12,3 +12,8 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
     Then the page blog should be visible
     When I navigate to the contact page
     Then the page contact should be visible
+
+   Scenario: To check the drop-down menu links for "Services"
+     Given I navigate to Betabreakers.com
+     When I mouse over the Services menu
+     Then I click the Functionality Testing link
