@@ -15,11 +15,69 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 //import cucumber.api.PendingException;
 
 
 public class stepDefinitions {
+
+    // Okay, baby steps
+
+    public class Pages {
+        String pageName;
+        String pageUrl;
+        String pageTitle;
+        String elementId;
+
+        public Pages(String pageName, String pageUrl, String pageTitle, String elementId) {
+        }
+    }
+
+    Pages services = new Pages ("services", "https://www.betabreakers.com/services/", "Software Quality Assurance & Testing Services | Beta Breakers", "menu-item-31");
+    Pages industries = new Pages ("industries", "Null", "Null", "menu-item-2638");
+    Pages whyTest = new Pages ("why test", "https://www.betabreakers.com/why-test/", "Why Software QA & Testing Services? (SQA) | Beta Breakers", "menu-item-235");
+    Pages company = new Pages ("company", "https://www.betabreakers.com/company/", "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers", "menu-item-29");
+    Pages blog  = new Pages ("blog", "https://www.betabreakers.com/blog/", "Software Testing & QA with Beta Breakers Software QA Labs", "menu-item-34");
+    Pages contact = new Pages ("contact", "https://www.betabreakers.com/contact/", "Contact Beta Breakers Software Testing & Quality Assurance", "menu-item-30");
+
+    /*
+    Was thinking of using an array for the page name of the link - and then having a pipe list in Gherkin?
+    String [] topLink;
+    topLink = new String[5];
+    topLink [0] = "services";
+     - NOPE topLink [1] = "industries";
+    topLink [2] = "why test";
+    topLink [3] = "company";
+    topLink [4] = "blog";
+    topLink [5] = "contact";
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected WebDriver driver;
 
@@ -31,10 +89,11 @@ public class stepDefinitions {
 
     @Given("^I navigate to Betabreakers\\.com$")
     public void i_navigate_to_Betabreakers_com() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
+        // Access the Betabreakers page - give it plenty of time (5 seconds) to load
         System.out.println("Accessing www.Betabreakers.com");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://www.betabreakers.com/");
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         if(driver.getTitle().contains("Software Quality Assurance Services & Application Testing | Beta Breakers"))
             //Pass
             System.out.println("\n" + "Main Page loaded without issue");
@@ -61,7 +120,7 @@ public class stepDefinitions {
 	 *
 	 */
 
-	// Clicking all the links in the top menu - Only the main link, not menu items
+    // Clicking all the links in the top menu - Only the main link, not menu items
 
     @When("^I navigate to the Services page$")
     public void i_navigate_to_the_Services_page() throws Throwable {
@@ -108,7 +167,6 @@ public class stepDefinitions {
 
     @Then("^the page why test should be visible$")
     public void the_page_why_test_should_be_visible() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
         System.out.println("\n" + "Validating loading of page 'Why Test?'");
         if(driver.getTitle().contains("Why Software QA & Testing Services? (SQA) | Beta Breakers"))
             //Pass
@@ -174,7 +232,6 @@ public class stepDefinitions {
 
     @Then("^the page contact should be visible$")
     public void the_page_contact_should_be_visible() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
         System.out.println("\n" + "Validating loading of page 'contact'");
         if(driver.getTitle().contains("Contact Beta Breakers Software Testing & Quality Assurance"))
             //Pass
@@ -188,21 +245,136 @@ public class stepDefinitions {
         //driver.quit();
     }
 
-    //open the menu
-    @When("^I mouse over the Services menu$")
-    public void i_mouse_over_the_services_menu() throws Throwable {
-        System.out.println("\n" + "Moving Mouse over Services menu");
-        WebElement services_menu = driver.findElement(By.id("menu-item-31"));
-        Actions.moveToElement(services_menu).perform();
-        System.out.println("\n" + "Mouse over Services menu");
-    }
-    //click the menu item
+    // Open the menu and click the link
+
+    /* I tried this:
+
     @Then("^I click the Functionality Testing link$")
-    public void i_click_the_functionality_testing_link() throws Throwable {
+        public void i_click_the_functionality_testing_link() throws Throwable {
         System.out.println("\n" + "Clicking the Functionality Testing sub-menu lin");
         WebElement services_sub_funtionality = driver.findElement(By.id("menu-item-103"));
         Actions.moveToElement(services_sub_funtionality).click();
+
+        BUT THAT DIDN'T WORK - so I found this from https://stackoverflow.com/questions/17293914/how-to-perform-mouseover-function-in-selenium-webdriver-using-java
+            WebElement we = webdriver.findElement(By.xpath("html/body/div[13]/ul/li[4]/a"));
+            action.moveToElement(we).moveToElement(webdriver.findElement(By.xpath("/expression-here"))).click().build().perform();
+     */
+
+
+    @When("^I mouse over Services and click Functionality$")
+    public void i_mouse_over_services_and_click_functionality() throws Throwable {
+        Actions action = new Actions(driver);
+        System.out.println("\n" + "Moving Mouse over Services menu");
+        WebElement services_menu = driver.findElement(By.id("menu-item-31"));
+        //action.moveToElement(services_menu).moveToElement(driver.findElement(By.id("menu-item-103"))).click(); - DID NOT WORK
+        //Actions.moveToElement(services_menu).perform(); - DID NOT WORK
+        // action.moveToElement(services_menu).moveToElement(driver.findElement(By.id("menu-item-103"))).click().build().perform(); - WORKS
+        action.moveToElement(services_menu).moveToElement(driver.findElement(By.id("menu-item-103"))).click().perform(); // - WORKS
+        //driver.findElement(By.id("menu-item-103")).click(); - Does not work
+        System.out.println("\n" + "Clicked Functionality Link from menu");
+        //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        //action.pause(java.time.Duration.ofSeconds(10));
     }
+
+
+    @Then("^I wait for the Functionality page to load$")
+    public void i_wait_for_the_functionality_page_to_load() throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlMatches("https://www.betabreakers.com/services/functionality-testing/"));
+        System.out.println("Waiting for Functionality page to load");
+        //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); - Didn't wait
+        //WebElement element = wait.until(ExpectedConditions.titleIs(Software Functionality Testing & Application Quality Assurance Services)); - errors
+    }
+
+    @Then("^I validate the Functionality page loaded correctly$")
+    public void i_validate_the_functionality_page_loaded_correctly() throws Throwable {
+        //Actions action = new Actions(driver);
+        //WebDriver.Timeouts wait = driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        //WebDriverWait wait = new WebDriverWait(driver,20);
+        //driver.wait();
+        //driver.getTitle().contains("Software Functionality Testing & Application Quality Assurance Services");
+        //WebDriverWait wait = new WebDriverWait(driver, 60/*timeout in seconds*/);
+        //WebElement element = wait.until(ExpectedConditions.titleIs(Software Functionality Testing & Application Quality Assurance Services));
+        //action.pause(java.time.Duration.ofSeconds(10));
+        System.out.println("\n" + "Validating page 'Functionality Testing'");
+
+        if (driver.getTitle().contentEquals("Software Functionality Testing & Application Quality Assurance Services"))
+            //Pass
+            System.out.println("\n" + "Verified 'Functionality' page");
+        else
+            //Fail
+            System.out.println("\n" + "Page title doesn't contain \"Software Functionality Testing & Application Quality Assurance Services\" ");
+        System.out.println("\n" + "Returning to main page");
+        driver.findElement(By.id("menu-item-9")).click();
+    }
+
+    //Automated Testing Page
+
+    @When("^I mouse over Services and click Automation$")
+    public void i_mouse_over_services_and_click_automation() throws Throwable {
+        Actions action = new Actions(driver);
+        System.out.println("\n" + "Moving Mouse over Services menu");
+        WebElement services_menu = driver.findElement(By.id("menu-item-31"));
+        action.moveToElement(services_menu).moveToElement(driver.findElement(By.id("menu-item-132"))).click().perform();
+        System.out.println("\n" + "Clicked Compatibility Link from menu");
+
+    }
+
+    @Then("^I wait for the Automation page to load$")
+    public void i_wait_for_the_automation_page_to_load() throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlMatches("https://www.betabreakers.com/services/automated-testing/"));
+        System.out.println("Waiting for Compatibility page to load");
+    }
+
+    @Then("^I validate the Automation page loaded correctly$")
+    public void i_validate_the_automation_page_loaded_correctly() throws Throwable {
+        System.out.println("\n" + "Validating page 'Automation Testing'");
+        if (driver.getTitle().contentEquals("Automation Software Testing & Continuous Integration - QA Services | Beta Breakers"))
+            //Pass
+            System.out.println("\n" + "Verified 'Compatibility' page");
+        else
+            //Fail
+            System.out.println("\n" + "Page title doesn't contain \"Automation Software Testing & Continuous Integration - QA Services | Beta Breakers\" ");
+        System.out.println("\n" + "Returning to main page");
+        driver.findElement(By.id("menu-item-9")).click();
+    }
+
+
+
+    //Compatibility Page
+
+    @When("^I mouse over Services and click Compatibility$")
+    public void i_mouse_over_services_and_click_compatibility() throws Throwable {
+        Actions action = new Actions(driver);
+        System.out.println("\n" + "Moving Mouse over Services menu");
+        WebElement services_menu = driver.findElement(By.id("menu-item-31"));
+        action.moveToElement(services_menu).moveToElement(driver.findElement(By.id("menu-item-109"))).click().perform();
+        System.out.println("\n" + "Clicked Compatibility Link from menu");
+
+    }
+
+
+    @Then("^I wait for the Compatibility page to load$")
+    public void i_wait_for_the_compatibility_page_to_load() throws Throwable {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlMatches("https://www.betabreakers.com/services/compatibility-testing/"));
+        System.out.println("Waiting for Compatibility page to load");
+    }
+
+    @Then("^I validate the Compatibility page loaded correctly$")
+    public void i_validate_the_compatibility_page_loaded_correctly() throws Throwable {
+        System.out.println("\n" + "Validating page 'Compatibility Testing'");
+        if (driver.getTitle().contentEquals("Software & Mobile Device Compatibility Testing | Beta Breakers"))
+            //Pass
+            System.out.println("\n" + "Verified 'Compatibility' page");
+        else
+            //Fail
+            System.out.println("\n" + "Page title doesn't contain \"Software & Mobile Device Compatibility Testing | Beta Breakers\" ");
+        System.out.println("\n" + "Returning to main page");
+        driver.findElement(By.id("menu-item-9")).click();
+    }
+
 
 
 
