@@ -65,14 +65,54 @@ public class stepDefinitions {
             if(page_name.equals(pageList.get(i).pageName)) {
                 foundPageTitle = true;
                 driver.findElement(By.id(pageList.get(i).elementId)).click();
+                System.out.println("\n" + "Clicking on the '" + page_name + "' Page link");
             }
         }
         if (!foundPageTitle) {
             System.out.println("Page Title Not Found");
-
         }
 
     }
+
+    @When("^I validate the \"([^\"]*)\" page$")
+    public void i_validate_the_page(String page_name) {
+
+        Boolean foundPageTitle = false;
+
+        for(int i = 0; i < pageList.size(); i++) {
+            //Find the page_name from the pageList
+            if (page_name.equals(pageList.get(i).pageName)) {
+                //Pass
+                foundPageTitle = true;
+                // driver.findElement(By.id(pageList.get(i).elementId)).click();
+                driver.getTitle().contentEquals(pageList.get(i).pageTitle);
+                System.out.println("\n" + "Verified title for page is '" + pageList.get(i).pageTitle + "'");
+                }
+
+            if (!foundPageTitle) {
+                //Fail
+                System.out.println("Page Title Not Found");
+                System.out.println("\n" + "Page title doesn't contain '" + pageList.get(i).pageTitle + "'");
+
+            }
+        }
+
+        //Return to main page
+        System.out.println("\n" + "Returning to main page");
+        driver.findElement(By.id("menu-item-9")).click();
+    }
+
+    /*
+    System.out.println("\n" + "Validating page 'Compatibility Testing'");
+        if (driver.getTitle().contentEquals("Software & Mobile Device Compatibility Testing | Beta Breakers"))
+            //Pass
+            System.out.println("\n" + "Verified 'Compatibility' page");
+        else
+            //Fail
+            System.out.println("\n" + "Page title doesn't contain \"Software & Mobile Device Compatibility Testing | Beta Breakers\" ");
+        System.out.println("\n" + "Returning to main page");
+        driver.findElement(By.id("menu-item-9")).click();
+     */
     /*
     Was thinking of using an array for the page name of the link - and then having a pipe list in Gherkin?
     String [] topLink;

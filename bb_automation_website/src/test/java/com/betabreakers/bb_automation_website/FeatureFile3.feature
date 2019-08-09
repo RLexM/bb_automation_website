@@ -1,4 +1,6 @@
 Feature: To check that the main website pages have loaded in http://www.betabreakers.com
+  Background:
+    Given I navigate to Betabreakers.com
 
   #Scenario: To check that the Betabreakers Main page has loaded
     #Given I navigate to Betabreakers.com
@@ -13,10 +15,18 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
     #When I navigate to the contact page
     #Then the page contact should be visible
 
-  Scenario: To check the drop-down menu links for "Services"
-    Given I navigate to Betabreakers.com
+  Scenario: To check the drop-down menu links
     When I access the "services" page
     Then I validate the "services" page
+    When I access the "why test" page
+    Then I validate the "why test" page
+    When I access the "company" page
+    Then I validate the "company" page
+    When I access the "blog" page
+    Then I validate the "blog" page
+    When I access the "contact" page
+    Then I validate the "contact" page
+
 
 
     #When I mouse over Services and click Functionality
