@@ -8,6 +8,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import cucumber.deps.com.thoughtworks.xstream.converters.extended.ToStringConverter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 //import cucumber.api.PendingException;
+import java.util.*;
+import java.util.ArrayList;
 
 
 public class stepDefinitions {
@@ -26,22 +29,50 @@ public class stepDefinitions {
     // Okay, baby steps
 
     public class Pages {
-        String pageName;
-        String pageUrl;
-        String pageTitle;
-        String elementId;
+        public String pageName;
+        public String pageUrl;
+        public String pageTitle;
+        public String elementId;
 
-        public Pages(String pageName, String pageUrl, String pageTitle, String elementId) {
+       public Pages(String pageName, String pageUrl, String pageTitle, String elementId) {
+           this.pageName = pageName;
+           this.pageUrl = pageUrl;
+           this.pageTitle = pageTitle;
+           this.elementId = elementId;
         }
     }
 
-    Pages services = new Pages ("services", "https://www.betabreakers.com/services/", "Software Quality Assurance & Testing Services | Beta Breakers", "menu-item-31");
-    Pages industries = new Pages ("industries", "Null", "Null", "menu-item-2638");
-    Pages whyTest = new Pages ("why test", "https://www.betabreakers.com/why-test/", "Why Software QA & Testing Services? (SQA) | Beta Breakers", "menu-item-235");
-    Pages company = new Pages ("company", "https://www.betabreakers.com/company/", "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers", "menu-item-29");
-    Pages blog  = new Pages ("blog", "https://www.betabreakers.com/blog/", "Software Testing & QA with Beta Breakers Software QA Labs", "menu-item-34");
-    Pages contact = new Pages ("contact", "https://www.betabreakers.com/contact/", "Contact Beta Breakers Software Testing & Quality Assurance", "menu-item-30");
+    public ArrayList<Pages> pageList = new ArrayList<Pages>();
 
+    private Pages services = new Pages("services", "https://www.betabreakers.com/services/", "Software Quality Assurance & Testing Services | Beta Breakers", "menu-item-31");
+    private Pages industries = new Pages ("industries", "Null", "Null", "menu-item-2638");
+    private Pages whyTest = new Pages ("why test", "https://www.betabreakers.com/why-test/", "Why Software QA & Testing Services? (SQA) | Beta Breakers", "menu-item-235");
+    private Pages company = new Pages ("company", "https://www.betabreakers.com/company/", "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers", "menu-item-29");
+    private Pages blog  = new Pages ("blog", "https://www.betabreakers.com/blog/", "Software Testing & QA with Beta Breakers Software QA Labs", "menu-item-34");
+    private Pages contact = new Pages ("contact", "https://www.betabreakers.com/contact/", "Contact Beta Breakers Software Testing & Quality Assurance", "menu-item-30");
+
+    @When("^I access the \"([^\"]*)\" page$")
+    public void i_access_the_page(String page_name) {
+        pageList.add(services);
+        pageList.add(industries);
+        pageList.add(whyTest);
+        pageList.add(company);
+        pageList.add(blog);
+        pageList.add(contact);
+        Boolean foundPageTitle = false;
+
+        for(int i = 0; i < pageList.size(); i++) {
+            if(page_name.equals(pageList.get(i).pageName)) {
+                foundPageTitle = true;
+                driver.findElement(By.id(pageList.get(i).elementId)).click();
+            }
+        }
+        if (!foundPageTitle) {
+            System.out.println("Page Title Not Found");
+
+        }
+
+    }
     /*
     Was thinking of using an array for the page name of the link - and then having a pipe list in Gherkin?
     String [] topLink;
@@ -374,6 +405,8 @@ public class stepDefinitions {
         System.out.println("\n" + "Returning to main page");
         driver.findElement(By.id("menu-item-9")).click();
     }
+
+
 
 
 

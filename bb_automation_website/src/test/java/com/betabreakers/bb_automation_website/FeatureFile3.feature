@@ -15,18 +15,24 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
 
   Scenario: To check the drop-down menu links for "Services"
     Given I navigate to Betabreakers.com
+    When I access the "services" page
+    Then I validate the "services" page
 
-    When I mouse over Services and click Functionality
-    Then I wait for the Functionality page to load
-    Then I validate the Functionality page loaded correctly
 
-    When I mouse over Services and click Automation
-    Then I wait for the Automation page to load
-    Then I validate the Automation page loaded correctly
+    #When I mouse over Services and click Functionality
+    #Then I wait for the Functionality page to load
+    #Then I validate the Functionality page loaded correctly
 
-    When I mouse over Services and click Compatibility
-    Then I wait for the Compatibility page to load
-    Then I validate the Compatibility page loaded correctly
+    #When I mouse over Services and click Automation
+    #Then I wait for the Automation page to load
+    #Then I validate the Automation page loaded correctly
+
+    #When I mouse over Services and click Compatibility
+    #Then I wait for the Compatibility page to load
+    #Then I validate the Compatibility page loaded correctly
+
+  Scenario: I get a variable from the log
+
 
 
      #Then I click the Functionality Testing link
