@@ -1,11 +1,12 @@
 Feature: To check that the main website pages have loaded in http://www.betabreakers.com
+
   Background:
     Given I navigate to Betabreakers.com
 
-  #Scenario: To check the menu links
-    #When I access the "services" page
+  Scenario: To check the top menu sub-links
+    #When I access the "services" menu
     #Then I click the "functionality" menu item
-    #Then Then I validate the "functionality" page
+    #Then Then I validate the loaded page
 
 
 
@@ -24,7 +25,18 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
     #Then I validate the "blog" page
     When I access the "contact" page
     Then I validate the loaded page
-    #Then I validate the "contact" page"""
+    #Then I validate the "contact" page
+
+
+  #Scenario: To check the top menu main links
+    #When I access the "top_nav" page
+    #Then I validate the loaded page
+    #|top_nav    |
+    #|services   |
+    #|why test   |
+    #|company    |
+    #|blog       |
+   # |contact    |
 
 
 

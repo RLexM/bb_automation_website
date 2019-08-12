@@ -59,7 +59,8 @@ public class stepDefinitions {
     private Pages whyTest = new Pages ("why test", "https://www.betabreakers.com/why-test/",
             "Why Software QA & Testing Services? (SQA) | Beta Breakers", "menu-item-235");
     private Pages company = new Pages ("company", "https://www.betabreakers.com/company/",
-            "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers", "menu-item-29");
+            "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers",
+            "menu-item-29");
     private Pages blog  = new Pages ("blog", "https://www.betabreakers.com/blog/",
             "Software Testing & QA with Beta Breakers Software QA Labs", "menu-item-34");
     private Pages contact = new Pages ("contact", "https://www.betabreakers.com/contact/",
@@ -67,6 +68,7 @@ public class stepDefinitions {
 
     int pageIndex;
 
+    //Loop for top_nav links
 
 
     @When("^I access the \"([^\"]*)\" page$")
@@ -84,17 +86,35 @@ public class stepDefinitions {
             if(page_name.equals(pageList.get(i).pageName)) {
                 foundPageTitle = true;
                 driver.findElement(By.id(pageList.get(i).elementId)).click();
-                System.out.println("\n" + "Clicking on the '" + page_name + "' Page link");
+                System.out.println("Clicking on the '" + page_name + "' Page link");
                 pageIndex = i;
                 break;
             }
         }
         if (!foundPageTitle) {
-            System.out.println("Page Title Not Found");
+            System.out.println("Page title look-up Not Found");
         }
 
     }
 
+    //page validation using the pageIndex variable
+
+    @Then("^I validate the loaded page$")
+    public void i_validate_the_loaded_page() {
+        if (driver.getTitle().equals(pageList.get(pageIndex).pageTitle)) {
+            System.out.println("Verified page '" + pageList.get(pageIndex).pageName + "' loaded correctly");
+
+        } else {
+            System.out.println("Page " + pageList.get(pageIndex).pageTitle + " did not load");
+            System.out.println("Page's title found is " + driver.getTitle());
+        }
+
+        //Return to main page
+        System.out.println("Returning to main page");
+        driver.findElement(By.id("menu-item-9")).click();
+    }
+
+/* Testing if it doesn't need a page_name
     @When("^I validate the \"([^\"]*)\" page$")
     public void i_validate_the_page(String page_name) {
 
@@ -117,7 +137,7 @@ public class stepDefinitions {
         //Return to main page
         System.out.println("\n" + "Returning to main page");
         driver.findElement(By.id("menu-item-9")).click();
-
+*/
 /*        Boolean foundPageTitle = false;
 
         //WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -144,8 +164,9 @@ public class stepDefinitions {
         //Return to main page
         System.out.println("\n" + "Returning to main page");
         driver.findElement(By.id("menu-item-9")).click();
-    */
+
     }
+    */
 
     /*
     System.out.println("\n" + "Validating page 'Compatibility Testing'");
@@ -206,7 +227,7 @@ public class stepDefinitions {
         //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         if(driver.getTitle().contains("Software Quality Assurance Services & Application Testing | Beta Breakers"))
             //Pass
-            System.out.println("\n" + "Main Page loaded without issue");
+            System.out.println("\n" + "Main Page loaded without issue" + System.getProperty("line.separator"));
         else
             //Fail
             System.out.println("\n" + "Main Page did not load");
