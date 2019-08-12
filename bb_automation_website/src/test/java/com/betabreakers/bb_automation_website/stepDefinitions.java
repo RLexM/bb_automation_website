@@ -26,6 +26,14 @@ import java.util.ArrayList;
 
 public class stepDefinitions {
 
+    protected WebDriver driver;
+
+    @Before
+    public void setup() {
+        driver = new FirefoxDriver();
+        Actions actions = new Actions(driver);
+    }
+
     // Okay, baby steps
 
     public class Pages {
@@ -44,12 +52,22 @@ public class stepDefinitions {
 
     public ArrayList<Pages> pageList = new ArrayList<Pages>();
 
-    private Pages services = new Pages("services", "https://www.betabreakers.com/services/", "Software Quality Assurance & Testing Services | Beta Breakers", "menu-item-31");
-    private Pages industries = new Pages ("industries", "Null", "Null", "menu-item-2638");
-    private Pages whyTest = new Pages ("why test", "https://www.betabreakers.com/why-test/", "Why Software QA & Testing Services? (SQA) | Beta Breakers", "menu-item-235");
-    private Pages company = new Pages ("company", "https://www.betabreakers.com/company/", "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers", "menu-item-29");
-    private Pages blog  = new Pages ("blog", "https://www.betabreakers.com/blog/", "Software Testing & QA with Beta Breakers Software QA Labs", "menu-item-34");
-    private Pages contact = new Pages ("contact", "https://www.betabreakers.com/contact/", "Contact Beta Breakers Software Testing & Quality Assurance", "menu-item-30");
+    private Pages services = new Pages("services", "https://www.betabreakers.com/services/",
+            "Software Quality Assurance & Testing Services | Beta Breakers", "menu-item-31");
+    private Pages industries = new Pages ("industries", "Null", "Null",
+            "menu-item-2638");
+    private Pages whyTest = new Pages ("why test", "https://www.betabreakers.com/why-test/",
+            "Why Software QA & Testing Services? (SQA) | Beta Breakers", "menu-item-235");
+    private Pages company = new Pages ("company", "https://www.betabreakers.com/company/",
+            "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers", "menu-item-29");
+    private Pages blog  = new Pages ("blog", "https://www.betabreakers.com/blog/",
+            "Software Testing & QA with Beta Breakers Software QA Labs", "menu-item-34");
+    private Pages contact = new Pages ("contact", "https://www.betabreakers.com/contact/",
+            "Contact Beta Breakers Software Testing & Quality Assurance", "menu-item-30");
+
+    int pageIndex;
+
+
 
     @When("^I access the \"([^\"]*)\" page$")
     public void i_access_the_page(String page_name) {
@@ -59,6 +77,7 @@ public class stepDefinitions {
         pageList.add(company);
         pageList.add(blog);
         pageList.add(contact);
+
         Boolean foundPageTitle = false;
 
         for(int i = 0; i < pageList.size(); i++) {
@@ -66,6 +85,8 @@ public class stepDefinitions {
                 foundPageTitle = true;
                 driver.findElement(By.id(pageList.get(i).elementId)).click();
                 System.out.println("\n" + "Clicking on the '" + page_name + "' Page link");
+                pageIndex = i;
+                break;
             }
         }
         if (!foundPageTitle) {
@@ -77,7 +98,29 @@ public class stepDefinitions {
     @When("^I validate the \"([^\"]*)\" page$")
     public void i_validate_the_page(String page_name) {
 
-        Boolean foundPageTitle = false;
+        pageList.add(services);
+        pageList.add(industries);
+        pageList.add(whyTest);
+        pageList.add(company);
+        pageList.add(blog);
+        pageList.add(contact);
+
+        if (page_name.equals(pageList.get(pageIndex).pageName)) {
+            System.out.println("\n" + "Verified title for page is '" + pageList.get(pageIndex).pageTitle + "'");
+
+        } else {
+            System.out.println("Page Title Not Found");
+            System.out.println("\n" + "Page title doesn't contain '" + pageList.get(pageIndex).pageTitle + "'");
+
+        }
+
+        //Return to main page
+        System.out.println("\n" + "Returning to main page");
+        driver.findElement(By.id("menu-item-9")).click();
+
+/*        Boolean foundPageTitle = false;
+
+        //WebDriverWait wait = new WebDriverWait(driver, 10);
 
         for(int i = 0; i < pageList.size(); i++) {
             //Find the page_name from the pageList
@@ -87,6 +130,7 @@ public class stepDefinitions {
                 // driver.findElement(By.id(pageList.get(i).elementId)).click();
                 driver.getTitle().contentEquals(pageList.get(i).pageTitle);
                 System.out.println("\n" + "Verified title for page is '" + pageList.get(i).pageTitle + "'");
+                break;
                 }
 
             if (!foundPageTitle) {
@@ -100,6 +144,7 @@ public class stepDefinitions {
         //Return to main page
         System.out.println("\n" + "Returning to main page");
         driver.findElement(By.id("menu-item-9")).click();
+    */
     }
 
     /*
@@ -148,17 +193,11 @@ public class stepDefinitions {
 
 
 
+//==========================
 
 
-    protected WebDriver driver;
 
-    @Before
-    public void setup() {
-        driver = new FirefoxDriver();
-        Actions actions = new Actions(driver);
-    }
-
-    @Given("^I navigate to Betabreakers\\.com$")
+   @Given("^I navigate to Betabreakers\\.com$")
     public void i_navigate_to_Betabreakers_com() throws Throwable {
         // Access the Betabreakers page - give it plenty of time (5 seconds) to load
         System.out.println("Accessing www.Betabreakers.com");
@@ -193,7 +232,7 @@ public class stepDefinitions {
 
     // Clicking all the links in the top menu - Only the main link, not menu items
 
-    @When("^I navigate to the Services page$")
+/*    @When("^I navigate to the Services page$")
     public void i_navigate_to_the_Services_page() throws Throwable {
         System.out.println("\n" + "Clicking on the 'Services' Page link");
         driver.findElement(By.id("menu-item-31")).click();
@@ -215,7 +254,7 @@ public class stepDefinitions {
         System.out.println("\n" + "Returning to main page");
     }*/
 
-    @Then("^the page services should be visible$")
+/*    @Then("^the page services should be visible$")
     public void the_page_services_should_be_visible() throws Throwable {
         System.out.println("\n" + "Validating loading of page 'Services'");
         if(driver.getTitle().contains("Software Quality Assurance & Testing Services"))
@@ -332,7 +371,7 @@ public class stepDefinitions {
      */
 
 
-    @When("^I mouse over Services and click Functionality$")
+/*    @When("^I mouse over Services and click Functionality$")
     public void i_mouse_over_services_and_click_functionality() throws Throwable {
         Actions action = new Actions(driver);
         System.out.println("\n" + "Moving Mouse over Services menu");
@@ -357,31 +396,31 @@ public class stepDefinitions {
         //WebElement element = wait.until(ExpectedConditions.titleIs(Software Functionality Testing & Application Quality Assurance Services)); - errors
     }
 
-    @Then("^I validate the Functionality page loaded correctly$")
+/*    @Then("^I validate the Functionality page loaded correctly$")
     public void i_validate_the_functionality_page_loaded_correctly() throws Throwable {
         //Actions action = new Actions(driver);
         //WebDriver.Timeouts wait = driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         //WebDriverWait wait = new WebDriverWait(driver,20);
         //driver.wait();
         //driver.getTitle().contains("Software Functionality Testing & Application Quality Assurance Services");
-        //WebDriverWait wait = new WebDriverWait(driver, 60/*timeout in seconds*/);
+        //WebDriverWait wait = new WebDriverWait(driver, 60/*timeout in seconds*/;
         //WebElement element = wait.until(ExpectedConditions.titleIs(Software Functionality Testing & Application Quality Assurance Services));
         //action.pause(java.time.Duration.ofSeconds(10));
-        System.out.println("\n" + "Validating page 'Functionality Testing'");
+//        System.out.println("\n" + "Validating page 'Functionality Testing'");
 
-        if (driver.getTitle().contentEquals("Software Functionality Testing & Application Quality Assurance Services"))
+ //       if (driver.getTitle().contentEquals("Software Functionality Testing & Application Quality Assurance Services"))
             //Pass
-            System.out.println("\n" + "Verified 'Functionality' page");
-        else
+//            System.out.println("\n" + "Verified 'Functionality' page");
+//        else
             //Fail
-            System.out.println("\n" + "Page title doesn't contain \"Software Functionality Testing & Application Quality Assurance Services\" ");
-        System.out.println("\n" + "Returning to main page");
-        driver.findElement(By.id("menu-item-9")).click();
-    }
+//            System.out.println("\n" + "Page title doesn't contain \"Software Functionality Testing & Application Quality Assurance Services\" ");
+//        System.out.println("\n" + "Returning to main page");
+//        driver.findElement(By.id("menu-item-9")).click();
+//    }
 
     //Automated Testing Page
 
-    @When("^I mouse over Services and click Automation$")
+/*    @When("^I mouse over Services and click Automation$")
     public void i_mouse_over_services_and_click_automation() throws Throwable {
         Actions action = new Actions(driver);
         System.out.println("\n" + "Moving Mouse over Services menu");
@@ -446,7 +485,7 @@ public class stepDefinitions {
         driver.findElement(By.id("menu-item-9")).click();
     }
 
-
+*/
 
 
 

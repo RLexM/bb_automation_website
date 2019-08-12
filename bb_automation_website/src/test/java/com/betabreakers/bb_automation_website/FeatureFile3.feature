@@ -15,7 +15,7 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
     #When I navigate to the contact page
     #Then the page contact should be visible
 
-  Scenario: To check the drop-down menu links
+  Scenario: To check the top menu main links
     When I access the "services" page
     Then I validate the "services" page
     When I access the "why test" page
