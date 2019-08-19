@@ -41,32 +41,69 @@ public class stepDefinitions {
         public String pageUrl;
         public String pageTitle;
         public String elementId;
+        public String topMenuId;
 
-       public Pages(String pageName, String pageUrl, String pageTitle, String elementId) {
+        public Pages(String pageName, String pageUrl, String pageTitle, String elementId, String topMenuId) {
            this.pageName = pageName;
            this.pageUrl = pageUrl;
            this.pageTitle = pageTitle;
            this.elementId = elementId;
+            this.topMenuId = topMenuId;
         }
     }
 
     public ArrayList<Pages> pageList = new ArrayList<Pages>();
 
-    private Pages services = new Pages("services", "https://www.betabreakers.com/services/",
-            "Software Quality Assurance & Testing Services | Beta Breakers", "menu-item-31");
-    private Pages industries = new Pages ("industries", "Null", "Null",
-            "menu-item-2638");
-    private Pages whyTest = new Pages ("why test", "https://www.betabreakers.com/why-test/",
-            "Why Software QA & Testing Services? (SQA) | Beta Breakers", "menu-item-235");
-    private Pages company = new Pages ("company", "https://www.betabreakers.com/company/",
+    private Pages services = new Pages("services",
+            "https://www.betabreakers.com/services/",
+            "Software Quality Assurance & Testing Services | Beta Breakers",
+            "menu-item-31",
+            "N/A");
+    private Pages industries = new Pages("industries",
+            "Null",
+            "Null",
+            "menu-item-2638",
+            "N/A");
+    private Pages whyTest = new Pages("why test",
+            "https://www.betabreakers.com/why-test/",
+            "Why Software QA & Testing Services? (SQA) | Beta Breakers",
+            "menu-item-235",
+            "N/A");
+    private Pages company = new Pages("company",
+            "https://www.betabreakers.com/company/",
             "U.S. Based Software Application Testing & Quality Assurance Company | Beta Breakers",
-            "menu-item-29");
-    private Pages blog  = new Pages ("blog", "https://www.betabreakers.com/blog/",
-            "Software Testing & QA with Beta Breakers Software QA Labs", "menu-item-34");
-    private Pages contact = new Pages ("contact", "https://www.betabreakers.com/contact/",
-            "Contact Beta Breakers Software Testing & Quality Assurance", "menu-item-30");
+            "menu-item-29",
+            "N/A");
+    private Pages blog = new Pages("blog",
+            "https://www.betabreakers.com/blog/",
+            "Software Testing & QA with Beta Breakers Software QA Labs",
+            "menu-item-34",
+            "N/A");
+    private Pages contact = new Pages("contact",
+            "https://www.betabreakers.com/contact/",
+            "Contact Beta Breakers Software Testing & Quality Assurance",
+            "menu-item-30",
+            "N/A");
+    private Pages functionality = new Pages("functionality",
+            "https://www.betabreakers.com/services/functionality-testing/",
+            "Software Functionality Testing & Application Quality Assurance Services",
+            "menu-item-103",
+            "menu-item-31");
+    /*
+    Pages automated = new Pages();
+    Pages compatibility = new Pages();
+    Pages website = new Pages();
+    Pages mobile = new Pages();
+    Pages usability = new Pages();
+    Pages testplan = new Pages();
+    Pages localization = new Pages();
+    Pages load = new Pages();
+    Pages accessibility = new Pages();
+    */
 
     int pageIndex;
+
+    String mouse_over_menu = new String();
 
     //Loop for top_nav links
 
@@ -79,6 +116,17 @@ public class stepDefinitions {
         pageList.add(company);
         pageList.add(blog);
         pageList.add(contact);
+        pageList.add(functionality);
+        /*pageList.add(automated);
+        pageList.add(compatibility);
+        pageList.add(website);
+        pageList.add(mobile);
+        pageList.add(usability);
+        pageList.add(testplan);
+        pageList.add(localization);
+        pageList.add(load);
+        pageList.add(accessibility);
+        */
 
         Boolean foundPageTitle = false;
 
@@ -114,6 +162,100 @@ public class stepDefinitions {
         driver.findElement(By.id("menu-item-9")).click();
     }
 
+    // Mouse-over
+    /*
+
+    @When("^I mouse over the \"([^\"]*)\" menu$")
+    public void i_mouse_over_and_click(String menu_name) {
+
+        Boolean foundMouseOverTitle = false;
+
+        Actions action = new Actions(driver);
+
+        for (int i = 0; i < pageList.size(); i++) {
+            if (menu_name.equals(pageList.get(i).pageName)) {
+                foundMouseOverTitle = true;
+                WebElement topMenuLink = driver.findElement(By.id(pageList.get(i).elementId));
+                action.moveToElement(topMenuLink);
+                System.out.println("Moving mouse to " + pageList.get(i).pageName + " menu");
+                mouse_over_menu = pageList.get(i).elementId;
+                //driver.findElement(By.id(pageList.get(i).elementId)).click();
+                //System.out.println("Clicking on the '" + page_name + "' Page link");
+                break;
+            }
+        }
+        if (!foundMouseOverTitle) {
+            System.out.println("Top-Menu mouse-over title look-up Not Found");
+        }
+
+    }
+    */
+
+    @Then("^I click the \"([^\"]*)\" menu item$")
+    public void i_click_the_menu_item(String menu_link) {
+        pageList.add(services);
+        pageList.add(industries);
+        pageList.add(whyTest);
+        pageList.add(company);
+        pageList.add(blog);
+        pageList.add(contact);
+        pageList.add(functionality);
+        /*pageList.add(automated);
+        pageList.add(compatibility);
+        pageList.add(website);
+        pageList.add(mobile);
+        pageList.add(usability);
+        pageList.add(testplan);
+        pageList.add(localization);
+        pageList.add(load);
+        pageList.add(accessibility);
+        */
+        Actions action = new Actions(driver);
+        Boolean foundMenuItem = false;
+
+        for (int a = 0; a < pageList.size(); a++) {
+            if (menu_link.equals(pageList.get(a).pageName)) {
+                pageIndex = a;
+                foundMenuItem = true;
+                action.moveToElement(driver.findElement(By.id(pageList.get(pageIndex).topMenuId))).
+                        moveToElement(driver.findElement(By.id(pageList.get(pageIndex).elementId))).
+                        click().perform();
+                System.out.println("Clicking on the '" + pageList.get(pageIndex).pageName + "' Page link");
+//                    WebElement top_menu = driver.findElement(By.id(pageList.get(a).topMenuId));
+//                    WebElement menu_item = driver.findElement(By.id(pageList.get(a).elementId));
+//                    action.moveToElement(top_menu).build().perform();
+//                    action.moveToElement(menu_item).click(menu_item).build().perform();
+
+//                    WebElement top_menu = driver.findElement(By.id(pageList.get(a).topMenuId));
+//                    WebElement menu_item = driver.findElement(By.id(pageList.get(a).elementId));
+//                    action.moveToElement(top_menu).pause(1).perform();
+//                    action.moveToElement(menu_item).click().perform();
+                // ORIGINAL WebElement services_menu = driver.findElement(By.id("menu-item-31"));
+                // ORIGINAL action.moveToElement(services_menu).moveToElement(driver.findElement(By.id("menu-item-109"))).click().perform();
+                // ORIGINAL System.out.println("\n" + "Clicked Compatibility Link from menu");
+                //WebElement services_menu = driver.findElement(By.id(pageList.get(i).elementId));
+                //action.moveToElement(driver.findElement(By.id(pageList.get(a).topMenuId)));
+                //action.moveToElement(driver.findElement(By.id(pageList.get(a).elementId))).click().perform();
+                //action.moveToElement(pageList.get(i).elementId).click(); - Didn't Work
+                //driver.findElement(By.id(pageList.get(i).elementId)).click();
+                //System.out.println("Clicking on the '" + page_name + "' Page link");
+                //pageIndex = a;
+                break;
+            }
+        }
+        if (!foundMenuItem) {
+            System.out.println("Page sub-menu link look-up Not Found");
+        }
+    }
+
+
+/*
+
+        System.out.println("Moving Mouse over " + page_name + " menu");
+        WebElement services_menu = driver.findElement(By.id("menu-item-31"));
+        action.moveToElement(services_menu).moveToElement(driver.findElement(By.id("menu-item-132"))).click().perform();
+        System.out.println("\n" + "Clicked Compatibility Link from menu");
+*/
 /* Testing if it doesn't need a page_name
     @When("^I validate the \"([^\"]*)\" page$")
     public void i_validate_the_page(String page_name) {
@@ -219,7 +361,7 @@ public class stepDefinitions {
 
 
    @Given("^I navigate to Betabreakers\\.com$")
-    public void i_navigate_to_Betabreakers_com() throws Throwable {
+   public void i_navigate_to_Betabreakers_com() {
         // Access the Betabreakers page - give it plenty of time (5 seconds) to load
         System.out.println("Accessing www.Betabreakers.com");
         //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

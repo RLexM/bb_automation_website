@@ -4,27 +4,27 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
     Given I navigate to Betabreakers.com
 
   Scenario: To check the top menu sub-links
-    #When I access the "services" menu
-    #Then I click the "functionality" menu item
-    #Then Then I validate the loaded page
+    #When I mouse over the "services" menu
+    Then I click the "functionality" menu item
+    #Then I validate the loaded page
 
 
 
-  Scenario: To check the top menu main links
-    When I access the "services" page
-    Then I validate the loaded page
+  #Scenario: To check the top menu main links
+    #When I access the "services" page
+    #Then I validate the loaded page
     #Then I validate the "services" page
-    When I access the "why test" page
-    Then I validate the loaded page
+    #When I access the "why test" page
+    #Then I validate the loaded page
     #Then I validate the "why test" page
-    When I access the "company" page
-    Then I validate the loaded page
+    #When I access the "company" page
+    #Then I validate the loaded page
     #Then I validate the "company" page
-    When I access the "blog" page
-    Then I validate the loaded page
+    #When I access the "blog" page
+    #Then I validate the loaded page
     #Then I validate the "blog" page
-    When I access the "contact" page
-    Then I validate the loaded page
+    #When I access the "contact" page
+    #Then I validate the loaded page
     #Then I validate the "contact" page
 
 
