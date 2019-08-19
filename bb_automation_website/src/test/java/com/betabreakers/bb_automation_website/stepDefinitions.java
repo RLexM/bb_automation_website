@@ -150,11 +150,11 @@ public class stepDefinitions {
     @Then("^I validate the loaded page$")
     public void i_validate_the_loaded_page() {
         if (driver.getTitle().equals(pageList.get(pageIndex).pageTitle)) {
-            System.out.println("Verified page '" + pageList.get(pageIndex).pageName + "' loaded correctly");
+            System.out.println("\r\n" + "Verified page '" + pageList.get(pageIndex).pageName + "' loaded correctly");
 
         } else {
-            System.out.println("Page " + pageList.get(pageIndex).pageTitle + " did not load");
-            System.out.println("Page's title found is " + driver.getTitle());
+            System.out.println("\r\n" + "Page " + pageList.get(pageIndex).pageName + " did not load" + "\r\n" +
+                    "Title found for page is " + driver.getTitle());
         }
 
         //Return to main page
@@ -246,6 +246,15 @@ public class stepDefinitions {
         if (!foundMenuItem) {
             System.out.println("Page sub-menu link look-up Not Found");
         }
+    }
+
+
+    // Wait for the page to fully load before verification
+    @Then("^I wait for the page to load$")
+    public void i_wait_for_the_page_to_load() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlMatches(pageList.get(pageIndex).pageUrl));
+        System.out.println("\r\n" + "Waiting for " + pageList.get(pageIndex).pageName + " page to load");
     }
 
 

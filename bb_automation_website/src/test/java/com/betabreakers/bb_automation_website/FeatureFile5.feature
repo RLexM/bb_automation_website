@@ -6,7 +6,8 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
   Scenario: To check the top menu sub-links
     #When I mouse over the "services" menu
     Then I click the "functionality" menu item
-    #Then I validate the loaded page
+    Then I wait for the page to load
+    Then I validate the loaded page
 
 
 
