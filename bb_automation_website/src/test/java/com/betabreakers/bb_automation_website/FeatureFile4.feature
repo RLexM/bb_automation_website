@@ -3,40 +3,23 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
   Background:
     Given I navigate to Betabreakers.com
 
-  Scenario: To check the top menu sub-links
-    #When I mouse over the "services" menu
-    Then I click the "functionality" menu item
-    Then I wait for the page to load
-    Then I validate the loaded page
+  #Scenario: To check the menu links
+    #When I mouse-over the "services" page
+    #Then I click the "functionality" menu item
+    #Then Then I validate the "functionality" page
+
 
 
   Scenario: To check the top menu main links
-    When I access the "services" page
+    When I access the "top_nav" page
     Then I validate the loaded page
-    #Then I validate the "services" page
-    #When I access the "why test" page
-    #Then I validate the loaded page
-    #Then I validate the "why test" page
-    #When I access the "company" page
-    #Then I validate the loaded page
-    #Then I validate the "company" page
-    #When I access the "blog" page
-    #Then I validate the loaded page
-    #Then I validate the "blog" page
-    #When I access the "contact" page
-    #Then I validate the loaded page
-    #Then I validate the "contact" page
+      | top_nav  |
+      | services |
+      | why test |
+      | company  |
+      | blog     |
+      | contact  |
 
-
-  #Scenario: To check the top menu main links
-    #When I access the "top_nav" page
-    #Then I validate the loaded page
-    #|top_nav    |
-    #|services   |
-    #|why test   |
-    #|company    |
-    #|blog       |
-   # |contact    |
 
 
 
@@ -48,7 +31,7 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
 
     # Hard-Coded Scenarios/steps -------
 
-  #Scenario: To check that the Betabreakers Main page has loaded
+ #Scenario: To check that the Betabreakers Main page has loaded
     #Given I navigate to Betabreakers.com
     #When I navigate to the Services page
     #Then the page services should be visible
