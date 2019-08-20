@@ -6,20 +6,64 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
   Scenario: To check the top menu main links
     When I access the top nav "services" page link
     Then I validate the loaded page
-#    |services|
-#    |whyTest|
-#    |company |
-#    |blog    |
-#    |contact |
+    When I access the top nav "whyTest" page link
+    Then I validate the loaded page
+    When I access the top nav "company" page link
+    Then I validate the loaded page
+    When I access the top nav "blog" page link
+    Then I validate the loaded page
+    When I access the top nav "contact" page link
+    Then I validate the loaded page
 
 
-  Scenario: To check the top menu sub-links
+  Scenario: To check the top menu Services sub-links
     When I click the "functionality" menu item
     Then I wait for the page to load
     Then I validate the loaded page
+    When I click the "functionality" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+  automated
+  compatibility
+  website
+  mobile
+  usability
+  testplan
+  localization
+  load
+  accessibility
 
-# |functionality|
+  Scenario: To check the top menu Industries sub-links
+    When I click the "branding" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+  branding
+  webdev
+  healthcare
+  educational
+  entertainment
+  business
+  retail
 
+  Scenario: To check the top menu Why Test? sub-links
+    When I click the "process" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+  process
+  outsource
+  hire
+  faq
+
+  Scenario: To check the top menu Company sub-links
+    When I click the "testimonals" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+    When I click the "team" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+    When I click the "career" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 
       #Then I quit the browser
 
