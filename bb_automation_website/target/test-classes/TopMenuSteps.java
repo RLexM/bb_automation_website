@@ -1,6 +1,4 @@
-package com.betabreakers.bb_automation_website;
-
-
+import cucumber.api.CucumberOptions;
 import cucumber.api.java.*;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
