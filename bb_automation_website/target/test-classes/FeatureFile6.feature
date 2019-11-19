@@ -23,36 +23,36 @@ Feature: To check that the main website pages have loaded in http://www.betabrea
     When I click the "functionality" menu item
     Then I wait for the page to load
     Then I validate the loaded page
-  automated
-  compatibility
-  website
-  mobile
-  usability
-  testplan
-  localization
-  load
-  accessibility
+#  #automated
+#  compatibility
+#  website
+#  mobile
+#  usability
+#  testplan
+#  localization
+#  load
+#  accessibility
 
   Scenario: To check the top menu Industries sub-links
     When I click the "branding" menu item
     Then I wait for the page to load
     Then I validate the loaded page
-  branding
-  webdev
-  healthcare
-  educational
-  entertainment
-  business
-  retail
+#  branding
+#  webdev
+#  healthcare
+#  educational
+#  entertainment
+#  business
+#  retail
 
   Scenario: To check the top menu Why Test? sub-links
     When I click the "process" menu item
     Then I wait for the page to load
     Then I validate the loaded page
-  process
-  outsource
-  hire
-  faq
+#  process
+#  outsource
+#  hire
+#  faq
 
   Scenario: To check the top menu Company sub-links
     When I click the "testimonals" menu item
