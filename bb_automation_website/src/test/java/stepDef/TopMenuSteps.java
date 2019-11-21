@@ -54,8 +54,8 @@ public class TopMenuSteps {
     Pages home = new Pages("home",
             "https://www.betabreakers.com/",
             "Software Quality Assurance Services & Application Testing | Beta Breakers",
-            "N/A",
-            "N/A");
+            "menu-item-9",
+            "menu-item-9");
     Pages services = new Pages("services",
             "https://www.betabreakers.com/services/",
             "Software Quality Assurance & Testing Services | Beta Breakers",
@@ -96,14 +96,17 @@ public class TopMenuSteps {
     Pages automated = new Pages("automated",
             "https://www.betabreakers.com/services/automated-testing/",
             "Automation Software Testing & Continuous Integration - QA Services | Beta Breakers",
-            "menu-item-132", "menu-item-31");
+            "menu-item-132",
+            "menu-item-31");
     Pages compatibility = new Pages("compatibility",
             "https://www.betabreakers.com/services/compatibility-testing/",
-            "Software & Mobile Device Compatibility Testing | Beta Breakers", "menu-item-109",
+            "Software & Mobile Device Compatibility Testing | Beta Breakers",
+            "menu-item-109",
             "menu-item-31");
     Pages website = new Pages("website",
             "https://www.betabreakers.com/services/website-testing/",
-            "Website Testing & Mobile Quality Assurance Services | Beta Breakers", "menu-item-108",
+            "Website Testing & Mobile Quality Assurance Services | Beta Breakers",
+            "menu-item-108",
             "menu-item-31");
     Pages mobile = new Pages("mobile",
             "https://www.betabreakers.com/services/mobile-app-testing/",
@@ -111,51 +114,112 @@ public class TopMenuSteps {
             "menu-item-135", "menu-item-31");
     Pages usability = new Pages("usability",
             "https://www.betabreakers.com/services/usability-testing/",
-            "Usability Testing : Desktop, Mobile, Web | Beta Breakers", "menu-item-136",
+            "Usability Testing : Desktop, Mobile, Web | Beta Breakers",
+            "menu-item-136",
             "menu-item-31");
     Pages testplan = new Pages("testplan",
             "https://www.betabreakers.com/services/test-plan-writing/",
-            "Test Plan Writing for Quality Assurance (QA) | Beta Breakers", "menu-item-134",
+            "Test Plan Writing for Quality Assurance (QA) | Beta Breakers",
+            "menu-item-134",
             "menu-item-31");
     Pages localization = new Pages("localization",
             "https://www.betabreakers.com/services/localization-testing/",
-            "Software Localization Testing - QA Services | Beta Breakers", "menu-item-133",
+            "Software Localization Testing - QA Services | Beta Breakers",
+            "menu-item-133",
             "menu-item-31");
     Pages load = new Pages("load",
             "https://www.betabreakers.com/services/loadperformance-testing/",
-            "Website Performance & Load Testing Services | Beta Breakers", "menu-item-131",
+            "Website Performance & Load Testing Services | Beta Breakers",
+            "menu-item-131",
             "menu-item-31");
     Pages accessibility = new Pages("accessibility",
             "https://www.betabreakers.com/services/accessibility-testing/",
-            "508 Compliance & Web Software Accessibility Testing | Beta Breakers", "menu-item-130",
+            "508 Compliance & Web Software Accessibility Testing | Beta Breakers",
+            "menu-item-130",
             "menu-item-31");
 
     //Industries Pages
 
 
-    private Pages branding = new Pages("branding", "", "", "", "menu-item-2638");
-    private Pages webdev = new Pages("webdev", "", "", "", "menu-item-2638");
-    private Pages healthcare = new Pages("healthcare", "", "", "", "menu-item-2638");
-    private Pages educational = new Pages("educational", "", "", "", "menu-item-2638");
-    private Pages entertainment = new Pages("entertainment", "", "", "", "menu-item-2638");
-    private Pages business = new Pages("business", "", "", "", "menu-item-2638");
-    private Pages retail = new Pages("retail", "", "", "", "menu-item-2638");
+    Pages branding = new Pages("branding",
+            "https://www.betabreakers.com/quality-assurance-branding-agencies/",
+            "Quality Assurance for Branding & Digital Advertising Agencies | Beta Breakers",
+            "menu-item-1683",
+            "menu-item-2638");
+    Pages webdev = new Pages("webdev",
+            "https://www.betabreakers.com/web-development-quality-assurance/",
+            "Web Development Quality Assurance Testing | Beta Breakers",
+            "menu-item-1689",
+            "menu-item-2638");
+    Pages healthcare = new Pages("healthcare",
+            "https://www.betabreakers.com/healthcare-software-testing/",
+            "Healthcare Software Testing & Quality Assurance Services | Beta Breakers",
+            "menu-item-1716",
+            "menu-item-2638");
+    Pages educational = new Pages("educational",
+            "https://www.betabreakers.com/educational-software-testing/",
+            "Educational Software Testing & ebook Quality Assurance | Beta Breakers",
+            "menu-item-1717",
+            "menu-item-2638");
+    Pages entertainment = new Pages("entertainment",
+            "https://www.betabreakers.com/entertainment/",
+            "Mobile Game QA Testing - Entertainment Software Testing | Beta Breakers",
+            "menu-item-2651",
+            "menu-item-2638");
+    Pages business = new Pages("business",
+            "https://www.betabreakers.com/business-finance/",
+            "Business & Finance Software QA Testing | Beta Breakers",
+            "menu-item-2650",
+            "menu-item-2638");
+    Pages retail = new Pages("retail",
+            "https://www.betabreakers.com/retail-e-commerce/",
+            "E-Commerce Website Software QA Testing - Retail Testing | Beta Breakers",
+            "menu-item-2649",
+            "menu-item-2638");
 
 
     //Why Test? Pages
 
-    private Pages process = new Pages("process", "", "", "", "menu-item-235");
-    private Pages outsource = new Pages("outsource", "", "", "", "menu-item-235");
-    private Pages hire = new Pages("hire", "", "", "", "menu-item-235");
-    private Pages faq = new Pages("faq", "", "", "", "menu-item-235");
+    private Pages process = new Pages("process",
+            "https://www.betabreakers.com/why-test/the-process/",
+            "Software Quality Assurance (SQA) Process | Beta Breakers",
+            "menu-item-236",
+            "menu-item-235");
+    private Pages outsource = new Pages("outsource",
+            "https://www.betabreakers.com/why-test/why-outsource/",
+            "Why Outsource Software Quality Assurance? | Beta Breakers",
+            "menu-item-261",
+            "menu-item-235");
+    private Pages hire = new Pages("hire",
+            "https://www.betabreakers.com/why-test/hire-beta-breakers/",
+            "Software Quality Assurance & Testing | Beta Breakers",
+            "menu-item-416",
+            "menu-item-235");
+    private Pages faq = new Pages("faq",
+            "https://www.betabreakers.com/why-test/faq/",
+            "FAQs : Software QA & Testing Information | Beta Breakers",
+            "menu-item-174",
+            "menu-item-235");
 
 
     //Company Pages
 
 
-    private Pages testimonials = new Pages("testimonials", "", "", "", "menu-item-29");
-    private Pages team = new Pages("team", "", "", "", "menu-item-29");
-    private Pages careers = new Pages("careers", "", "", "", "menu-item-29");
+    private Pages testimonials = new Pages("testimonials",
+            "https://www.betabreakers.com/company/testimonials/",
+            "Expert Software Testing & QA Solutions | Beta Breakers",
+            "menu-item-177",
+            "menu-item-29");
+    private Pages team = new Pages("team",
+            "https://www.betabreakers.com/company/team/",
+            "U.S. Based Software Testing & QA Professionals | Beta Breakers",
+            "menu-item-176",
+            "menu-item-29");
+    private Pages careers = new Pages("careers",
+            "https://www.betabreakers.com/company/careers/",
+            "Careers : Software Quality Assurance Jobs | Beta Breakers",
+            "menu-item-175",
+            "menu-item-29");
 
     //pageIndex used to transport the page found to validation
 
@@ -281,7 +345,7 @@ public class TopMenuSteps {
             }
         if (!foundMenuItem) {
             //Fail
-            System.err.println("Page sub-menu link look-up Not Found");
+            System.err.println("Page sub-menu link '" + menu_link + "' look-up Not Found");
         }
     }
 

@@ -3,138 +3,117 @@ Feature: To check that the main website pages have loaded in betabreakers site
   Background:
     Given I navigate to Betabreakers.com
 
-  Scenario: To check the top menu Services sub-links
+
+# Services
+
+  Scenario: To check the top menu 'Services' sub-links
+# functionality
     When I click the "functionality" menu item
     Then I wait for the page to load
     Then I validate the loaded page
-#    When I click the "functionality" menu item
-#    Then I wait for the page to load
-#    Then I validate the loaded page
-#  #automated
-#  compatibility
-#  website
-#  mobile
-#  usability
-#  testplan
-#  localization
-#  load
-#  accessibility
+# automated
+    When I click the "automated" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# compatibility
+    When I click the "compatibility" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# website
+    When I click the "website" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# mobile
+    When I click the "mobile" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# usability
+    When I click the "usability" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# testplan
+    When I click the "testplan" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# localization
+    When I click the "localization" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# load
+    When I click the "load" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# accessibility
+    When I click the "accessibility" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 
-#  Scenario: To check the top menu Industries sub-links
-#    When I click the "branding" menu item
-#    Then I wait for the page to load
-#    Then I validate the loaded page
+# Industries
+
+  Scenario: To check the top menu 'Industries' sub-links
 #  branding
-#  webdev
+    When I click the "branding" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+# webdev
+    When I click the "webdev" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  healthcare
+    When I click the "healthcare" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  educational
+    When I click the "educational" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  entertainment
+    When I click the "entertainment" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  business
+    When I click the "business" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  retail
+    When I click the "retail" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 
-#  Scenario: To check the top menu Why Test? sub-links
-#    When I click the "process" menu item
-#    Then I wait for the page to load
-#    Then I validate the loaded page
+# Why Test?
+
+  Scenario: To check the top menu 'Why Test?' sub-links
 #  process
+    When I click the "process" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  outsource
+    When I click the "outsource" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  hire
+    When I click the "hire" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 #  faq
+    When I click the "faq" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 
-#  Scenario: To check the top menu Company sub-links
-#    When I click the "testimonals" menu item
-#    Then I wait for the page to load
-#    Then I validate the loaded page
-#    When I click the "team" menu item
-#    Then I wait for the page to load
-#    Then I validate the loaded page
-#    When I click the "career" menu item
-#    Then I wait for the page to load
-#    Then I validate the loaded page
+# Company
 
-      #Then I quit the browser
+  Scenario: To check the top menu Company sub-links
+#  testimonials
+    When I click the "testimonials" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+#  team
+    When I click the "team" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
+#  careers
+    When I click the "careers" menu item
+    Then I wait for the page to load
+    Then I validate the loaded page
 
-
-#  Scenario: To check the top menu sub-links
-#    When I mouse over the "services" menu
-#    Then I click the top nav menu items
-#    Then I wait for the page to load
-#    Then I validate the loaded page
-#    |functionality|
-
-
-
-
-
-
-
-  #Scenario: To check the top menu main links
-    #When I access the "services" page
-    #Then I validate the loaded page
-    #Then I validate the "services" page
-    #When I access the "why test" page
-    #Then I validate the loaded page
-    #Then I validate the "why test" page
-    #When I access the "company" page
-    #Then I validate the loaded page
-    #Then I validate the "company" page
-    #When I access the "blog" page
-    #Then I validate the loaded page
-    #Then I validate the "blog" page
-    #When I access the "contact" page
-    #Then I validate the loaded page
-    #Then I validate the "contact" page
-
-
-  #Scenario: To check the top menu main links
-    #When I access the "top_nav" page
-    #Then I validate the loaded page
-    #|top_nav    |
-    #|services   |
-    #|why test   |
-    #|company    |
-    #|blog       |
-   # |contact    |
-
-
-
-
-
-
-
-
-
-    # Hard-Coded Scenarios/steps -------
-
-  #Scenario: To check that the Betabreakers Main page has loaded
-    #Given I navigate to Betabreakers.com
-    #When I navigate to the Services page
-    #Then the page services should be visible
-    #When I navigate to the why test page
-    #Then the page why test should be visible
-    #When I navigate to the company page
-    #Then the page company should be visible
-    #When I navigate to the blog page
-    #Then the page blog should be visible
-    #When I navigate to the contact page
-    #Then the page contact should be visible
-
-
-
-    #When I mouse over Services and click Functionality
-    #Then I wait for the Functionality page to load
-    #Then I validate the Functionality page loaded correctly
-
-    #When I mouse over Services and click Automation
-    #Then I wait for the Automation page to load
-    #Then I validate the Automation page loaded correctly
-
-    #When I mouse over Services and click Compatibility
-    #Then I wait for the Compatibility page to load
-    #Then I validate the Compatibility page loaded correctly
-
-  #Scenario: I get a variable from the log
-
-
-
-     #Then I click the Functionality Testing link
+    Then I close the browser
