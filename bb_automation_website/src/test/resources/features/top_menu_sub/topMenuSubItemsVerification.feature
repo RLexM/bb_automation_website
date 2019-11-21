@@ -3,26 +3,10 @@ Feature: To check that the main website pages have loaded in betabreakers site
   Background:
     Given I navigate to Betabreakers.com
 
-  Scenario: To check the top menu main links
-    When I access the top nav "services" page link
+  Scenario: To check the top menu Services sub-links
+    When I click the "functionality" menu item
+    Then I wait for the page to load
     Then I validate the loaded page
-#    When I access the top nav "Industries" page link
-#    Then I validate the loaded page
-    When I access the top nav "whyTest" page link
-    Then I validate the loaded page
-    When I access the top nav "company" page link
-    Then I validate the loaded page
-    When I access the top nav "blog" page link
-    Then I validate the loaded page
-    When I access the top nav "contact" page link
-    Then I validate the loaded page
-    Then I close the browser
-
-
-#  Scenario: To check the top menu Services sub-links
-#    When I click the "functionality" menu item
-#    Then I wait for the page to load
-#    Then I validate the loaded page
 #    When I click the "functionality" menu item
 #    Then I wait for the page to load
 #    Then I validate the loaded page

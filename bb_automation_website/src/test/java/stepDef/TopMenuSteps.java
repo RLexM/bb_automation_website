@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -16,13 +17,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.*;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class TopMenuSteps {
 
     @Before
     public void setup() {
         System.setProperty("webdriver.gecko.driver","/Users/tester/IdeaProjects/bb_automation_website/bb_automation_website/src/test/resources/drivers/geckodriver");
+        System.setProperty("webdriver.chrome.driver","/Users/tester/IdeaProjects/bb_automation_website/bb_automation_website/src/test/resources/drivers/chromedriver");
         driver = new FirefoxDriver();
+        //driver = new ChromeDriver();
         Actions actions = new Actions(driver);
     }
 
@@ -47,18 +51,22 @@ public class TopMenuSteps {
     ArrayList<Pages> pageList = new ArrayList<Pages>();
 
     // Top Menu page anchors
-
+    Pages home = new Pages("home",
+            "https://www.betabreakers.com/",
+            "Software Quality Assurance Services & Application Testing | Beta Breakers",
+            "N/A",
+            "N/A");
     Pages services = new Pages("services",
             "https://www.betabreakers.com/services/",
             "Software Quality Assurance & Testing Services | Beta Breakers",
             "menu-item-31",
             "N/A");
     Pages industries = new Pages("industries",
-            "Null",
-            "Null",
+            "https://www.betabreakers.com/",
+            "Software Quality Assurance Services & Application Testing | Beta Breakers",
             "menu-item-2638",
             "N/A");
-    Pages whyTest = new Pages("why test",
+    Pages whyTest = new Pages("whyTest",
             "https://www.betabreakers.com/why-test/",
             "Why Software QA & Testing Services? (SQA) | Beta Breakers",
             "menu-item-235",
@@ -171,6 +179,7 @@ public class TopMenuSteps {
 
     @When("^I access the top nav \"([^\"]*)\" page link$")
     public void i_access_the_top_nav_page_link(String links) {
+        pageList.add(home);
         pageList.add(services);
         pageList.add(industries);
         pageList.add(whyTest);
@@ -178,7 +187,7 @@ public class TopMenuSteps {
         pageList.add(blog);
         pageList.add(contact);
 
-        boolean foundPageTitle = false;
+        Boolean foundPageTitle = false;
 
         for (int i = 0; i < pageList.size(); i++) {
             if (links.equals(pageList.get(i).pageName)) {
@@ -197,7 +206,8 @@ public class TopMenuSteps {
         }
         if (!foundPageTitle) {
             //Fail
-            System.out.println("Page title look-up Not Found");
+            System.out.println("Page title look-up for '" + links + "' Not Found");
+
         }
 
     }
@@ -212,13 +222,16 @@ public class TopMenuSteps {
 
         } else {
             //Fail
-            System.err.println("\r\n" + "Page " + pageList.get(pageIndex).pageName + " did not load" + "\r\n" +
+            System.err.println("\r\n" + "Page '" + pageList.get(pageIndex).pageName + "' did not load. " +
                     "Title found for page is " + driver.getTitle());
         }
 
         //Auto-Return to main page
-        System.out.println("Returning to main page");
-        driver.findElement(By.id("menu-item-9")).click();
+        System.out.println("\r\n" + "Returning to main page" + "\r\n");
+
+        //driver.navigate().back();
+        driver.navigate().to("https://www.betabreakers.com");
+        WebDriverWait wait = new WebDriverWait(driver, 5);
     }
 
     //Mouse over menu, click the menu item
