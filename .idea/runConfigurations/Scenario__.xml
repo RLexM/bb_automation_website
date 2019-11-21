@@ -10,7 +10,7 @@
     <option name="NAME_FILTER" value="^$" />
     <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvmSMFormatter --monochrome --name &quot;^$&quot;" />
     <option name="SUGGESTED_NAME" value="Scenario: " />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bb_automation_website" />
+    <option name="WORKING_DIRECTORY" value="$MAVEN_REPOSITORY$" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="cucumber.api.cli.*" />

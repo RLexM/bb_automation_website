@@ -9,5 +9,6 @@
         <module name="bb_automation_website" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>
