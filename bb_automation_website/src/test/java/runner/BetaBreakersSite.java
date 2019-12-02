@@ -8,8 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"/Users/tester/IdeaProjects/bb_automation_website/bb_automation_website/src/test/resources/features/"},
         plugin = {"json"},
-        glue = {"stepDef"},
-        tags = {"test1"}
+        glue = {"stepDef"}
 )
 public class BetaBreakersSite {
     public BetaBreakersSite(){

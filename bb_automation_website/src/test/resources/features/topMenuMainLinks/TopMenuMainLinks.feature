@@ -3,25 +3,32 @@ Feature: To check the Top Nav links available from base Beta Breakers website pa
 
   Background:
     Given I navigate to Betabreakers.com
-  @TopNav @Services
-  Scenario: I check the top menu link 'Services'
+  @TopNav @Services @TestServices
+  Scenario: Check the top menu link 'Services'
     When I access the top nav "services" page link
     Then I validate the loaded page
+    Then I close the browser
+
   @TopNav @WhyTest
-  Scenario: I check the top menu link 'Why Test?'
+  Scenario: Check the top menu link 'Why Test?'
     When I access the top nav "whyTest" page link
     Then I validate the loaded page
+    Then I close the browser
+
   @TopNav @Company
-  Scenario: I check the top menu link 'Company'
+  Scenario: Check the top menu link 'Company'
     When I access the top nav "company" page link
     Then I validate the loaded page
+    Then I close the browser
+
   @TopNav @Blog
-  Scenario: I check the top menu link 'Blog'
+  Scenario: Check the top menu link 'Blog'
     When I access the top nav "blog" page link
     Then I validate the loaded page
+    Then I close the browser
+
   @TopNav @Contact
-  Scenario: I check the top menu link 'Contact'
+  Scenario: Check the top menu link 'Contact'
     When I access the top nav "contact" page link
     Then I validate the loaded page
-
     Then I close the browser
