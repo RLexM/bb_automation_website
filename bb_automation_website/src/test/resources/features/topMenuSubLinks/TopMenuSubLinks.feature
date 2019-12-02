@@ -2,10 +2,11 @@
 Feature: To check that the main website pages have loaded in betabreakers site
 
   Background:
-    Given I navigate to Betabreakers.com
 
-  @TopNav @SubMenu @Services
+
+  @TopNav @SubMenu @Services @TagTest
   Scenario: To check the top menu 'Services' sub-link 'Functionality'
+    Given I navigate to Betabreakers.com
     When I click the "functionality" menu item
     Then I wait for the page to load
     Then I validate the loaded page

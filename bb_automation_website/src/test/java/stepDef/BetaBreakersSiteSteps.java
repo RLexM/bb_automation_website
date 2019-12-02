@@ -213,20 +213,23 @@ public class BetaBreakersSiteSteps {
 
     // Access the BB page in the browser
     @Given("^I navigate to Betabreakers\\.com$")
-    public void i_navigate_to_Betabreakers_com() {
+    public void iNavigateToBetabreakersCom() {
         System.out.println("Accessing www.Betabreakers.com");
         driver.get("https://www.betabreakers.com/");
-        if (driver.getTitle().contains("Software Quality Assurance Services & Application Testing | Beta Breakers"))
-            //Pass
-            System.out.println("\n" + "Main Page loaded without issue" + "\r\n");
-        else
-            //Fail
-            System.out.println("\n" + "Main Page did not load");
+            if (driver.getTitle().contains("Software Quality Assurance Services & Application Testing | Beta Breakers"))
+            {
+                //Pass
+                System.out.println("\n" + "Main Page loaded without issue" + "\r\n");
+            } else {
+                //Fail
+                System.out.println("\n" + "Main Page did not load");
+                driver.quit();
+            }
     }
 
     //Click the top navigation links
     @When("^I access the top nav \"([^\"]*)\" page link$")
-    public void i_access_the_top_nav_page_link(String links) {
+    public void iAccessTheTopNavPageLink(String links) {
         anchorsList.add(home);
         anchorsList.add(services);
         anchorsList.add(industries);
@@ -253,7 +256,7 @@ public class BetaBreakersSiteSteps {
 
     //page validation using the pageIndex variable
     @Then("^I validate the loaded page$")
-    public void i_validate_the_loaded_page() {
+    public void iValidateTheLoadedPage() {
         if (driver.getTitle().equals(anchorsList.get(pageIndex).pageTitle)) {
             //Pass
             System.out.println("\r\n" + "Verified page '" + anchorsList.get(pageIndex).pageName + "' loaded correctly");
@@ -271,7 +274,7 @@ public class BetaBreakersSiteSteps {
 
     //Mouse over menu, click the menu item
     @When("^I click the \"([^\"]*)\" menu item$")
-    public void i_click_the_menu_item(String menu_link) {
+    public void iClickTheMenuItem(String menu_link) {
         anchorsList.add(functionality);
         anchorsList.add(automated);
         anchorsList.add(compatibility);
@@ -321,7 +324,7 @@ public class BetaBreakersSiteSteps {
 
     // Wait for the page to fully load before verification
     @Then("^I wait for the page to load$")
-    public void i_wait_for_the_page_to_load() {
+    public void iWaitForThePageToLoad() {
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
 
@@ -331,7 +334,8 @@ public class BetaBreakersSiteSteps {
     }
 
     @Then("^I close the browser$")
-    public void i_close_the_browser() {
+    public void iCloseTheBrowser() {
+        System.out.println("\r\n" + "Closing the Browser");
         driver.quit();
     }
 
