@@ -252,7 +252,8 @@ public class BetaBreakersSiteSteps {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         System.out.println("\r\n" + "Accessing www.betabreakers.com");
         driver.get("https://www.betabreakers.com/");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[1]/div/a/img")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"slidewrap\"]/div")));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div[1]/div/a/img")));
 //            if (driver.getTitle().contains("Software Quality Assurance Services & Application Testing | Beta Breakers")) {
 //                //Pass
 //                System.out.println("\r\n" + "Main Page loaded without issue" + "\r\n");
