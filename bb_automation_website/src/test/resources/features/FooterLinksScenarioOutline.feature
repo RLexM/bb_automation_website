@@ -1,5 +1,5 @@
 @FunctionalTest @SmokeTest @RegressionTest
-Feature: To check the Footer links available from base Beta Breakers website page and verify links function
+Feature: Footer Links
 
   @ScenarioFooterLinks
   Scenario Outline: Check all Bottom Nav Links

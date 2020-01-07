@@ -15,6 +15,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+
+
 import java.util.*;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +30,7 @@ public class BetaBreakersSiteSteps {
         System.setProperty("webdriver.gecko.driver","/Users/tester/IdeaProjects/bb_automation_website/bb_automation_website/src/test/resources/drivers/geckodriver");
         System.setProperty("webdriver.chrome.driver","/Users/tester/IdeaProjects/bb_automation_website/bb_automation_website/src/test/resources/drivers/chromedriver");
         driver = new FirefoxDriver();
+        driver.manage().window().maximize();
         //driver = new ChromeDriver();
         Actions actions = new Actions(driver);
     }
@@ -252,6 +257,7 @@ public class BetaBreakersSiteSteps {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         System.out.println("\r\n" + "Accessing www.betabreakers.com");
         driver.get("https://www.betabreakers.com/");
+        Screenshot.captureScreenshot(driver, "Betabreakers Page Loaded");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"slidewrap\"]/div")));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div[1]/div[1]/div/div[1]/div/a/img")));
 //            if (driver.getTitle().contains("Software Quality Assurance Services & Application Testing | Beta Breakers")) {
