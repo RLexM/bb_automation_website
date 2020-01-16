@@ -1,5 +1,5 @@
 @FunctionalTest @SmokeTest @RegressionTest
-Feature: To check the Top Nav links available from base Beta Breakers website page and verify link(s) function
+Feature: Check BB Site Top Nav link(s) function
 
   Background:
     Given I navigate to Betabreakers.com

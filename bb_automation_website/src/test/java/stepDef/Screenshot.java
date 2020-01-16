@@ -21,7 +21,7 @@ public class Screenshot
         }
         catch (Exception e)
         {
-            System.out.println("Exception while taking screenshot " + e);
+            System.out.println("Exception while taking screenshot " + e.getMessage());
         }
     }
 }

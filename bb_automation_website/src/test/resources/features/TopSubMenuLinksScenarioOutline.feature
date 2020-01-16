@@ -2,7 +2,7 @@
 Feature: To check the Top Nav links available from base Beta Breakers website page and verify link(s) function
 
   @ScenarioSubNav
-  Scenario Outline: Check all Top Nav Links
+  Scenario Outline: Check Sub Nav Links
     Given I navigate to Betabreakers.com
     When I click the "<subNavMenuPage>" menu item
     Then I wait for the page to load
