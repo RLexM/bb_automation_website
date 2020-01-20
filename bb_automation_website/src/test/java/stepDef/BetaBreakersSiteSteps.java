@@ -5,6 +5,7 @@ import cucumber.api.java.*;
 import cucumber.api.java.en.*;
 
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -245,6 +246,11 @@ public class BetaBreakersSiteSteps {
 //        driver = new ChromeDriver();
         driver.manage().window().maximize();
 //        Actions actions = new Actions(driver);
+        System.out.println("\r\n" + "Accessing www.betabreakers.com");
+        driver.get("https://www.betabreakers.com/");
+        //@TEST
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
+
     }
 
     @After
@@ -258,17 +264,19 @@ public class BetaBreakersSiteSteps {
     int pageIndex;
 
     // Access the BB page in the browser
-    @Given("^I navigate to Betabreakers\\.com$")
-    public void iNavigateToBetabreakersCom()
-    {
-        System.out.println("\r\n" + "Accessing www.betabreakers.com");
-        driver.get("https://www.betabreakers.com/");
-        boolean mainPageStatus = driver.findElement(By.xpath("//*[@id=\"slidewrap\"]/div")).isDisplayed();
-        Assert.assertTrue("Failure - did not access www.betabreakers.com", mainPageStatus);
-        if (mainPageStatus = false)
-    {
-        Screenshot.captureScreenshot(driver, "Betabreakers Main Page Not Loaded");
-    }
+//    @Given("^I navigate to Betabreakers\\.com$")
+//    public void iNavigateToBetabreakersCom()
+//    {
+//        System.out.println("\r\n" + "Accessing www.betabreakers.com");
+//        driver.get("https://www.betabreakers.com/");
+//        //@TEST
+//        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
+//        boolean mainPageStatus = driver.findElement(By.xpath("//*[@id=\"slidewrap\"]/div")).isDisplayed();
+//        Assert.assertTrue("Failure - did not access www.betabreakers.com", mainPageStatus);
+//        if (!mainPageStatus)
+//    {
+//        Screenshot.captureScreenshot(driver, "Betabreakers Main Page Not Loaded");
+//    }
 //        WebDriverWait wait = new WebDriverWait(driver, 5);
 //        Screenshot.captureScreenshot(driver, "Betabreakers Page Loaded");
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"slidewrap\"]/div")));
@@ -281,7 +289,7 @@ public class BetaBreakersSiteSteps {
 //                System.out.println("\r\n" + "Main Page did not load" + "\r\n");
 //                driver.quit();
 //            }
-    }
+//    }
 
     //Click the top navigation links
     @When("^I access the top nav \"([^\"]*)\" page link$")
@@ -420,14 +428,14 @@ public class BetaBreakersSiteSteps {
         System.out.println("\r\n" + "Waiting 5 seconds for " + anchorsList.get(pageIndex).pageName + " page to load");
     }
 
-    // Close the Browser window
-    @Then("^I close the browser$")
-    public void iCloseTheBrowser()
-    {
-        System.out.println("\r\n" + "Closing the Browser" + "\r\n");
-//        driver.close();
-        driver.quit();
-    }
+//    // Close the Browser window
+//    @Then("^I close the browser$")
+//    public void iCloseTheBrowser()
+//    {
+//        System.out.println("\r\n" + "Closing the Browser" + "\r\n");
+////        driver.close();
+//        driver.quit();
+//    }
 
     //Click the top navigation links
     @When("^I click the footer \"([^\"]*)\" link$")

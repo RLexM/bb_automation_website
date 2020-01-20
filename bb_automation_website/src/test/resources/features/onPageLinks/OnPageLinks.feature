@@ -1,12 +1,13 @@
 @FunctionalTest @SmokeTest @RegressionTest
-Feature: To check the main page links for website pages in the betabreakers site
+Feature: Find and check all on-page links
 
-  Background:
-    Given I navigate to Betabreakers.com
+#  Background:
+#    Given I navigate to Betabreakers.com
   @OnPageLinks @MainPage
   Scenario: To check the links on the page
-    When I access the top nav "services" page link
-    Then I get the on-page links from the page
-    Then I click the link
+    When I get the on-page links from the page
+    Then I click the first link
     Then I validate the navigation to the link
-    Then I close the browser
+    Then I click the second link
+
+#    Then I close the browser
