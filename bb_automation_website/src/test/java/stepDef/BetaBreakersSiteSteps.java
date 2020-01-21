@@ -240,8 +240,8 @@ public class BetaBreakersSiteSteps {
     @Before
     public void setUp()
     {
-//        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
-//        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
+        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
+        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
         driver = new FirefoxDriver();
 //        driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -250,27 +250,27 @@ public class BetaBreakersSiteSteps {
         driver.get("https://www.betabreakers.com/");
         //@TEST
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
-
     }
-
+//
     @After
     public void tearDown()
     {
-        System.out.println("Closing the browser");
+        System.out.println("\r\n" + "Closing the browser");
         driver.quit();
     }
 
     //pageIndex used to transport the page found to validation
     int pageIndex;
 
-    // Access the BB page in the browser
-//    @Given("^I navigate to Betabreakers\\.com$")
-//    public void iNavigateToBetabreakersCom()
-//    {
-//        System.out.println("\r\n" + "Accessing www.betabreakers.com");
-//        driver.get("https://www.betabreakers.com/");
-//        //@TEST
-//        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
+     //Access the BB page in the browser
+/*    @Given("^I navigate to Betabreakers\\.com$")
+    public void iNavigateToBetabreakersCom()
+    {
+        System.out.println("\r\n" + "Accessing www.betabreakers.com");
+        driver.get("https://www.betabreakers.com/");
+        //@TEST
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
+ */
 //        boolean mainPageStatus = driver.findElement(By.xpath("//*[@id=\"slidewrap\"]/div")).isDisplayed();
 //        Assert.assertTrue("Failure - did not access www.betabreakers.com", mainPageStatus);
 //        if (!mainPageStatus)
