@@ -41,6 +41,12 @@ public class BetaBreakersPageHeader
             "menu-item-31",
             "N/A",
             "N/A");
+    public static Page automatedTesting = new Page("automatedTesting",
+            "https://www.betabreakers.com/services/automated-testing/",
+            "Automation Software Testing & Continuous Integration - QA Services | Beta Breakers",
+            "menu-item-132",
+            "N/A", "N/A");
+
     public static Page industries = new Page("industries",
             "https://www.betabreakers.com/",
             "Software Quality Assurance Services & Application Testing | Beta Breakers",
@@ -219,4 +225,9 @@ public class BetaBreakersPageHeader
             "menu-item-175",
             "menu-item-29",
             "");
+
+    public void thing()
+    {
+        pageList.add(home);
+    }
 }

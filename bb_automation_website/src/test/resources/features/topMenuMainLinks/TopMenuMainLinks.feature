@@ -9,6 +9,11 @@ Feature: Check BB Site Top Nav links function
     Then I validate the loaded page
 #    Then I close the browser
 
+  @TopNav @MainAutomated @AutomatedTesting
+    Scenario: Check the top menu link 'Automated Testing'
+    When I access the top nav "automatedTesting" page link
+    Then I validate the loaded page
+
   @TopNav @MainWhyTest @WhyTest
   Scenario: Check the top menu link 'Why Test?'
     When I access the top nav "whyTest" page link
