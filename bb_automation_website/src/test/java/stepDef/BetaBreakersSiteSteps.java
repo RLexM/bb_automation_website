@@ -12,8 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BetaBreakersPageHeader;
 
-import java.util.concurrent.TimeUnit;
-
 public class BetaBreakersSiteSteps {
 
     public WebDriver driver;
@@ -61,12 +59,14 @@ public class BetaBreakersSiteSteps {
         System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
         System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
         driver = new FirefoxDriver();
-//        driver = new ChromeDriver();
+/*        driver = new ChromeDriver(options);
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("window-size=1024,768");*/
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        System.out.println("\r\n" + "Accessing betabreakers.com");
+/*        System.out.println("\r\n" + "Accessing betabreakers.com");
         driver.get("https://www.betabreakers.com/");
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");*/
     }
 
     @After(order=0)
@@ -74,9 +74,8 @@ public class BetaBreakersSiteSteps {
     {
         if (scenario.isFailed())
         {
-            //Nab the screenshot
+            //Grab the screenshot and Embed Screenshot in report
             final byte[] screenshotByTest = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-            //Embed Screeshot in report
             scenario.embed(screenshotByTest, "image/png");
         }
 
@@ -87,14 +86,14 @@ public class BetaBreakersSiteSteps {
         }
     }
 
-/*     //Access the BB page in the browser
+     //Access the BB page in the browser
     @Given("^I navigate to Betabreakers\\.com$")
     public void iNavigateToBetabreakersCom()
     {
         System.out.println("\r\n" + "Accessing www.betabreakers.com");
         driver.get("https://www.betabreakers.com/");
         //@TEST
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
+/*        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");
         boolean mainPageStatus = driver.findElement(By.xpath("//*[@id=\"slidewrap\"]/div")).isDisplayed();
         Assert.assertTrue("Failure - did not access www.betabreakers.com", mainPageStatus);
         if (!mainPageStatus)
@@ -112,8 +111,8 @@ public class BetaBreakersSiteSteps {
                 //Fail
                 System.out.println("\r\n" + "Main Page did not load" + "\r\n");
                 driver.quit();
-            }
-    }*/
+            }*/
+    }
 
     //Click the top navigation links
     @When("^I access the top nav \"([^\"]*)\" page link$")
@@ -127,20 +126,20 @@ public class BetaBreakersSiteSteps {
                 //Pass
                 foundPageTitle = true;
                 driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).click();
-                System.out.println("\r\n" + "Clicking on the '" + links + "' Page link");
+                /*System.out.println("\r\n" + "Clicking on the '" + links + "' Page link");*/
                 pageIndex = i;
-                boolean topNavPageStatus = driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).isDisplayed();
-                Assert.assertTrue("Failure - did not access Top Nav Page Link Element ",topNavPageStatus);
+/*                boolean topNavPageStatus = driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).isDisplayed();
+                Assert.assertTrue("Failure - did not access Top Nav Page Link Element ",topNavPageStatus);*/
                 break;
             }
         }
-        if (!foundPageTitle)
+   /*     if (!foundPageTitle)
         {
             //Fail
             System.out.println("\r\n" + "Page title look-up for '" + links + "' Not Found");
             Screenshot.captureScreenshot(driver, "Page " + links + " did not load");
         }
-        Assert.assertTrue("Failure - Unable to look up " + links + " pageName", foundPageTitle);
+        Assert.assertTrue("Failure - Unable to look up " + links + " pageName", foundPageTitle);*/
     }
 
 
@@ -164,7 +163,7 @@ public class BetaBreakersSiteSteps {
                 Screenshot.captureScreenshot(driver, "Page " + BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle +
                         " did not load");
             }
-        Assert.assertEquals(BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle, driver.getTitle());
+//        Assert.assertEquals("Page " + BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle + "Access Error", BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle, driver.getTitle());
     }
 
     //Mouse over menu, click the menu item
@@ -183,8 +182,8 @@ public class BetaBreakersSiteSteps {
                         click().build().perform();
                 System.out.println("\r\n" + "Clicking on the '" + BetaBreakersPageHeader.pageList.get(i).pageName + "' Page link");
                 pageIndex = i;
-                boolean clickMenuItemStatus = driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).isDisplayed();
-                Assert.assertTrue("Failure - did not access Top Nav Page Link Element",clickMenuItemStatus);
+/*                boolean clickMenuItemStatus = driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).isDisplayed();
+                Assert.assertTrue(clickMenuItemStatus);*/
                 break;
             }
 
@@ -232,5 +231,6 @@ public class BetaBreakersSiteSteps {
             System.out.println("\r\n" + "Page title look-up for '" + footer_links + "' Not Found");
             Screenshot.captureScreenshot(driver, "FAIL - Page '" + driver.getTitle() + "' Loaded.");
         }
+
     }
 }

@@ -3,10 +3,9 @@ Feature: Check BB Site Top Nav links function - Outline
 
   @ScenarioTopNav
   Scenario Outline: Check all Top Nav Links
-#    Given I navigate to Betabreakers.com
+    Given I navigate to Betabreakers.com
     When I access the top nav "<linkName>" page link
     Then I validate the loaded page
-#    Then I close the browser
     Examples:
       |linkName |
       |services |
