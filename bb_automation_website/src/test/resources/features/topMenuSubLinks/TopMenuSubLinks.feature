@@ -1,65 +1,109 @@
 @FunctionalTest @SmokeTest @RegressionTest
 Feature: To check that the main website pages have loaded in betabreakers site
 
-  @SubMenu @SubServices @Functionality
-  Scenario: To check the top menu 'Services' sub-link 'Functionality'
+   @SubMenu @SubServices @AutomatedTesting
+  Scenario: To check the top mega menu 'Services' sub-link 'Automated Testing'
     Given I navigate to Betabreakers.com
-    When I click the "functionality" menu item
+    When I click the "automatedtesting" mega menu item
     Then I validate the loaded page
 
-   @SubMenu @SubServices @Automated
-  Scenario: To check the top menu 'Services' sub-link 'Automated'
-     Given I navigate to Betabreakers.com
-     When I click the "automated" menu item
+  @SubMenu @SubServices @Selenium
+  Scenario: To check the top mega menu 'Services' sub-link 'Selenium +'
+    Given I navigate to Betabreakers.com
+    When I click the "selenium" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @WhyAutomate
+  Scenario: To check the top mega menu 'Services' sub-link 'Why Automate with Us?'
+    Given I navigate to Betabreakers.com
+    When I click the "whyauto" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @SDETBios
+  Scenario: To check the top mega menu 'Services' sub-link 'SDET Bios'
+    Given I navigate to Betabreakers.com
+    When I click the "sdet" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @CaseStudies
+  Scenario: To check the top mega menu 'Services' sub-link 'Case Studies'
+    Given I navigate to Betabreakers.com
+    When I click the "casestudies" mega menu item
     Then I validate the loaded page
 
    @SubMenu @SubServices @Compatibility
-  Scenario: To check the top menu 'Services' sub-link 'Compatibility'
+  Scenario: To check the top mega menu 'Services' sub-link 'Compatibility Testing'
      Given I navigate to Betabreakers.com
-     When I click the "compatibility" menu item
+     When I click the "compatibility" mega menu item
      Then I validate the loaded page
+
+  @SubMenu @SubServices @BrowserCompatibility
+  Scenario: To check the top mega menu 'Services' sub-link 'Browser Compatibility'
+    Given I navigate to Betabreakers.com
+    When I click the "browsercompat" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @DeviceCompatibility
+  Scenario: To check the top mega menu 'Services' sub-link 'Device Compatibility'
+    Given I navigate to Betabreakers.com
+    When I click the "devicecompat" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @SystemCompatibility
+  Scenario: To check the top mega menu 'Services' sub-link 'System Compatibility'
+    Given I navigate to Betabreakers.com
+    When I click the "systemcompat" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @Functionality
+  Scenario: To check the top mega menu 'Services' sub-link 'Functionality'
+    Given I navigate to Betabreakers.com
+    When I click the "functionality" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @Accessibility
+  Scenario: To check the top menu 'Services' sub-link 'Accessibility'
+    Given I navigate to Betabreakers.com
+    When I click the "accessibility" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @Load
+  Scenario: To check the top mega menu 'Services' sub-link 'Load'
+    Given I navigate to Betabreakers.com
+    When I click the "load" mega menu item
+    Then I validate the loaded page
 
    @SubMenu @SubServices @Website
-  Scenario: To check the top menu 'Services' sub-link 'Website'
+  Scenario: To check the top mega menu 'Services' sub-link 'Website'
      Given I navigate to Betabreakers.com
-     When I click the "website" menu item
+     When I click the "website" mega menu item
      Then I validate the loaded page
+
+  @SubMenu @SubServices @Localization
+  Scenario: To check the top mega menu 'Services' sub-link 'Localization'
+    Given I navigate to Betabreakers.com
+    When I click the "localization" mega menu item
+    Then I validate the loaded page
+
+  @SubMenu @SubServices @Usability
+  Scenario: To check the top mega menu 'Services' sub-link 'Usability'
+    Given I navigate to Betabreakers.com
+    When I click the "usability" mega menu item
+    Then I validate the loaded page
 
    @SubMenu @SubServices @Mobile
-  Scenario: To check the top menu 'Services' sub-link 'Mobile'
+  Scenario: To check the top mega menu 'Services' sub-link 'Mobile'
      Given I navigate to Betabreakers.com
-     When I click the "mobile" menu item
-     Then I validate the loaded page
-
-   @SubMenu @SubServices @Usability
-  Scenario: To check the top menu 'Services' sub-link 'Usability'
-     Given I navigate to Betabreakers.com
-     When I click the "usability" menu item
+     When I click the "mobile" mega menu item
      Then I validate the loaded page
 
    @SubMenu @SubServices @Testplan
-  Scenario: To check the top menu 'Services' sub-link 'Test Plan'
+  Scenario: To check the top mega menu 'Services' sub-link 'Test Plan'
      Given I navigate to Betabreakers.com
-     When I click the "testplan" menu item
+     When I click the "testplan" mega menu item
      Then I validate the loaded page
 
-   @SubMenu @SubServices @Localization
-  Scenario: To check the top menu 'Services' sub-link 'Localization'
-     Given I navigate to Betabreakers.com
-     When I click the "localization" menu item
-     Then I validate the loaded page
 
-   @SubMenu @SubServices @Load
-  Scenario: To check the top menu 'Services' sub-link 'Load'
-     Given I navigate to Betabreakers.com
-     When I click the "load" menu item
-     Then I validate the loaded page
-
-   @SubMenu @SubServices @Accessibility
-  Scenario: To check the top menu 'Services' sub-link 'Accessibility'
-     Given I navigate to Betabreakers.com
-     When I click the "accessibility" menu item
-     Then I validate the loaded page
 
    @SubMenu @SubIndustries @Branding
   Scenario: To check the top menu 'Industries' sub-link 'Branding'

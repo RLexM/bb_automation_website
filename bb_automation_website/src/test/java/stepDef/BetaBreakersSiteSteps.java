@@ -4,43 +4,55 @@ import cucumber.api.Scenario;
 import cucumber.api.java.*;
 import cucumber.api.java.en.*;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BetaBreakersPageHeader;
 
+import java.util.ArrayList;
+
+
 public class BetaBreakersSiteSteps {
 
-    public WebDriver driver;
+    static WebDriver driver;
 
     //pageIndex used to transport the page found to validation
     int pageIndex;
 
     //Global Hooks
     @Before(order=0)
-    public void setUp()
-    {
+    public void setUp() {
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.home);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.services);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.automatedTesting);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.automatedtesting);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.selenium);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.whyauto);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.sdet);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.case_studies);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.compatibility);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.browsercompat);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.devicecompat);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.systemcompat);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.functionality);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.accessibility);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.load);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.website);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.localization);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.usability);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.mobile);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.testplan);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.industries);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.whyTest);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.company);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.blog);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.contact);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.functionality);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.automated);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.compatibility);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.website);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.mobile);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.usability);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.testplan);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.localization);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.load);
-        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.accessibility);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.branding);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.webdev);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.healthcare);
@@ -57,17 +69,42 @@ public class BetaBreakersSiteSteps {
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.careers);
 
         System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
-        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
+//        WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
-/*        driver = new ChromeDriver(options);
+    }
+
+
+/*    @When ("^I Start Firefox$")
+    public void iStartFirefox()
+    {
+//        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+*//*      options.addArguments("--headless");
+        options.addArguments("window-size=1024,768");*//*
+        driver.manage().window().maximize();
+*//*        System.out.println("\r\n" + "Accessing betabreakers.com");
+        driver.get("https://www.betabreakers.com/");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");*//*
+    }
+
+    @When ("^I Start Chrome$")
+    public void iStartChrome()
+    {
+//        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
+//        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
+
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+*//*        driver = new ChromeDriver(ChromeOptions);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        options.addArguments("window-size=1024,768");*/
+        options.addArguments("window-size=1024,768");*//*
         driver.manage().window().maximize();
-/*        System.out.println("\r\n" + "Accessing betabreakers.com");
+*//*        System.out.println("\r\n" + "Accessing betabreakers.com");
         driver.get("https://www.betabreakers.com/");
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");*/
-    }
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");*//*
+    }*/
 
     @After(order=0)
     public void tearDown(Scenario scenario)
@@ -77,6 +114,7 @@ public class BetaBreakersSiteSteps {
             //Grab the screenshot and Embed Screenshot in report
             final byte[] screenshotByTest = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshotByTest, "image/png");
+            Screenshot.captureScreenshot(driver, "FAIL - Page '" + driver.getTitle() + "' Loaded.");
         }
 
         if (driver != null)
@@ -118,17 +156,19 @@ public class BetaBreakersSiteSteps {
     @When("^I access the top nav \"([^\"]*)\" page link$")
     public void iAccessTheTopNavPageLink(String links)
     {
-        boolean foundPageTitle = false;
+        Actions action = new Actions(driver);
+//        boolean foundPageTitle = false;
         for (int i = 0; i < BetaBreakersPageHeader.pageList.size(); i++)
         {
             if (links.equals(BetaBreakersPageHeader.pageList.get(i).pageName))
             {
-                //Pass
-                foundPageTitle = true;
-                driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).click();
-                /*System.out.println("\r\n" + "Clicking on the '" + links + "' Page link");*/
+                action.moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).topMenuId))).
+                        moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId))).
+                        click().build().perform();
                 pageIndex = i;
-/*                boolean topNavPageStatus = driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).isDisplayed();
+/*                foundPageTitle = true;
+                System.out.println("\r\n" + "Clicking on the '" + links + "' Page link");
+                boolean topNavPageStatus = driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).isDisplayed();
                 Assert.assertTrue("Failure - did not access Top Nav Page Link Element ",topNavPageStatus);*/
                 break;
             }
@@ -148,22 +188,25 @@ public class BetaBreakersSiteSteps {
     public void iValidateTheLoadedPage()
     {
         WebDriverWait wait = new WebDriverWait(driver, 10);
+//        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("info@betabreakers.com")));
         wait.until(ExpectedConditions.urlMatches(BetaBreakersPageHeader.pageList.get(pageIndex).pageUrl));
+        Assert.assertEquals("Page '" + BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle +
+                "' Access Error. Page Shown instead: '", BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle, driver.getTitle());
 
         if (driver.getTitle().equals(BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle))
         {
             //Pass
             System.out.println("\r\n" + "Verified page '" + BetaBreakersPageHeader.pageList.get(pageIndex).pageName +
                         "' loaded correctly");
-        } else
+        }
+        /*else
             {
                 //Fail
                 System.err.println("\r\n" + "Page '" + BetaBreakersPageHeader.pageList.get(pageIndex).pageName + "' did not load. " +
                         "Title found for page is " + driver.getTitle());
                 Screenshot.captureScreenshot(driver, "Page " + BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle +
                         " did not load");
-            }
-//        Assert.assertEquals("Page " + BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle + "Access Error", BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle, driver.getTitle());
+            }*/
     }
 
     //Mouse over menu, click the menu item
@@ -171,15 +214,25 @@ public class BetaBreakersSiteSteps {
     public void iClickTheMenuItem(String menu_link)
     {
         Actions action = new Actions(driver);
-        boolean foundMenuItem = false;
+//        boolean foundMenuItem = false;
             for (int i = 0; i < BetaBreakersPageHeader.pageList.size(); i++)
             if (menu_link.equals(BetaBreakersPageHeader.pageList.get(i).pageName))
             {
                 //Pass
-                foundMenuItem = true;
-                action.moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).topMenuId))).
-                        moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId))).
-                        click().build().perform();
+//                foundMenuItem = true;
+                // Move mouse over "Mega Menu" via topMenuId from page
+                action.moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).topMenuId))).perform();
+                // wait until the page's element shows
+                // wait.until(ExpectedConditions.urlMatches(BetaBreakersPageHeader.pageList.get(i).elementId));
+                new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(
+                                By.cssSelector(BetaBreakersPageHeader.pageList.get(i).cssSelector)));
+//                new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(
+//                        By.id(BetaBreakersPageHeader.pageList.get(i).elementId)));
+                // Move to sub-mega-menu-item from page's elementId
+                action.moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId))).
+                        click().perform();
+//                action.moveToElement(driver.findElement(By.cssSelector(
+//                        BetaBreakersPageHeader.pageList.get(i).cssSelector))).click().perform();
                 System.out.println("\r\n" + "Clicking on the '" + BetaBreakersPageHeader.pageList.get(i).pageName + "' Page link");
                 pageIndex = i;
 /*                boolean clickMenuItemStatus = driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).elementId)).isDisplayed();
@@ -187,12 +240,44 @@ public class BetaBreakersSiteSteps {
                 break;
             }
 
-        if (!foundMenuItem)
+/*        if (!foundMenuItem)
         {
             //Fail
             System.err.println("\r\n" + "Page sub-menu link '" + menu_link + "' look-up Not Found");
             Screenshot.captureScreenshot(driver, "FAIL - Page '" + driver.getTitle() + "' Loaded.");
-        }
+        }*/
+    }
+
+    @When("^I click the \"([^\"]*)\" mega menu item$")
+    public void iClickTheMegaMenuItem(String menu_link)
+    {
+        Actions action = new Actions(driver);
+//        boolean foundMenuItem = false;
+        for (int i = 0; i < BetaBreakersPageHeader.pageList.size(); i++)
+            if (menu_link.equals(BetaBreakersPageHeader.pageList.get(i).pageName))
+            {
+                // Move mouse over "Mega Menu" via topMenuId from page
+                action.moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).topMenuId))).perform();
+
+                // wait until the page's element shows
+
+                new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector(BetaBreakersPageHeader.pageList.get(i).cssSelector)));
+
+                action.moveToElement(driver.findElement(By.xpath(BetaBreakersPageHeader.pageList.get(i).topXPath))).
+                        click().perform();
+
+                System.out.println("\r\n" + "Clicking on the '" + BetaBreakersPageHeader.pageList.get(i).pageName + "' Page link");
+                pageIndex = i;
+                break;
+            }
+
+/*        if (!foundMenuItem)
+        {
+            //Fail
+            System.err.println("\r\n" + "Page sub-menu link '" + menu_link + "' look-up Not Found");
+            Screenshot.captureScreenshot(driver, "FAIL - Page '" + driver.getTitle() + "' Loaded.");
+        }*/
     }
 
 /*    // Wait for the page to fully load before verification
@@ -218,19 +303,19 @@ public class BetaBreakersSiteSteps {
             if (footer_links.equals(BetaBreakersPageHeader.pageList.get(i).pageName))
             {
                 //Pass
-                foundFooterLink = true;
+//                foundFooterLink = true;
                 driver.findElement(By.xpath(BetaBreakersPageHeader.pageList.get(i).bottomXPath)).click();
                 System.out.println("\r\n" + "Clicking on the '" + footer_links + "' Page link");
                 pageIndex = i;
                 break;
             }
         }
-        if (!foundFooterLink)
+/*        if (!foundFooterLink)
         {
             //Fail
             System.out.println("\r\n" + "Page title look-up for '" + footer_links + "' Not Found");
             Screenshot.captureScreenshot(driver, "FAIL - Page '" + driver.getTitle() + "' Loaded.");
-        }
+        }*/
 
     }
 }
