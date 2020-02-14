@@ -1,33 +1,32 @@
 package stepDef;
 
-import cucumber.api.Scenario;
 import cucumber.api.java.*;
 import cucumber.api.java.en.*;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BetaBreakersPageHeader;
 
-import java.util.ArrayList;
-
 
 public class BetaBreakersSiteSteps {
-
-    static WebDriver driver;
 
     //pageIndex used to transport the page found to validation
     int pageIndex;
 
+    public WebDriver driver;
+
+    public BetaBreakersSiteSteps()
+    {
+        driver = Hooks.driver;
+    }
+
+//    WebDriverWait wait = new WebDriverWait(driver, 10);
+
     //Global Hooks
-    @Before(order=0)
+    @Before(order=1)
     public void setUp() {
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.home);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.services);
@@ -66,47 +65,36 @@ public class BetaBreakersSiteSteps {
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.faq);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.testimonials);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.team);
+        BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.mission);
         BetaBreakersPageHeader.pageList.add(BetaBreakersPageHeader.careers);
-
-        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
-//        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
     }
 
 
 /*    @When ("^I Start Firefox$")
     public void iStartFirefox()
     {
-//        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
-        WebDriverManager.firefoxdriver().setup();
+        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
         driver = new FirefoxDriver();
-*//*      options.addArguments("--headless");
-        options.addArguments("window-size=1024,768");*//*
         driver.manage().window().maximize();
-*//*        System.out.println("\r\n" + "Accessing betabreakers.com");
-        driver.get("https://www.betabreakers.com/");
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");*//*
+    }
+
+    @When ("^I Start Safari$")
+    public void iStartSafari()
+    {
+        System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/safaridriver");
+        driver = new SafariDriver();
+        driver.manage().window().maximize();
     }
 
     @When ("^I Start Chrome$")
     public void iStartChrome()
     {
-//        System.setProperty("webdriver.gecko.driver","src/test/resources/drivers/geckodriver");
-//        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
-
-        WebDriverManager.chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver");
         driver = new ChromeDriver();
-*//*        driver = new ChromeDriver(ChromeOptions);
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("window-size=1024,768");*//*
         driver.manage().window().maximize();
-*//*        System.out.println("\r\n" + "Accessing betabreakers.com");
-        driver.get("https://www.betabreakers.com/");
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.betabreakers.com/");*//*
     }*/
 
-    @After(order=0)
+/*    @After(order=0)
     public void tearDown(Scenario scenario)
     {
         if (scenario.isFailed())
@@ -122,7 +110,7 @@ public class BetaBreakersSiteSteps {
             System.out.println("\r\n" + "Closing the browser");
             driver.quit();
         }
-    }
+    }*/
 
      //Access the BB page in the browser
     @Given("^I navigate to Betabreakers\\.com$")
@@ -187,9 +175,8 @@ public class BetaBreakersSiteSteps {
     @Then("^I validate the loaded page$")
     public void iValidateTheLoadedPage()
     {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
 //        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("info@betabreakers.com")));
-        wait.until(ExpectedConditions.urlMatches(BetaBreakersPageHeader.pageList.get(pageIndex).pageUrl));
+        new WebDriverWait(driver,10).until(ExpectedConditions.urlMatches(BetaBreakersPageHeader.pageList.get(pageIndex).pageUrl));
         Assert.assertEquals("Page '" + BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle +
                 "' Access Error. Page Shown instead: '", BetaBreakersPageHeader.pageList.get(pageIndex).pageTitle, driver.getTitle());
 
@@ -224,7 +211,7 @@ public class BetaBreakersSiteSteps {
                 action.moveToElement(driver.findElement(By.id(BetaBreakersPageHeader.pageList.get(i).topMenuId))).perform();
                 // wait until the page's element shows
                 // wait.until(ExpectedConditions.urlMatches(BetaBreakersPageHeader.pageList.get(i).elementId));
-                new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(
+                new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(
                                 By.cssSelector(BetaBreakersPageHeader.pageList.get(i).cssSelector)));
 //                new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(
 //                        By.id(BetaBreakersPageHeader.pageList.get(i).elementId)));
@@ -261,7 +248,7 @@ public class BetaBreakersSiteSteps {
 
                 // wait until the page's element shows
 
-                new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(
+                new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(
                         By.cssSelector(BetaBreakersPageHeader.pageList.get(i).cssSelector)));
 
                 action.moveToElement(driver.findElement(By.xpath(BetaBreakersPageHeader.pageList.get(i).topXPath))).

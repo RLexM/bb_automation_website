@@ -2,18 +2,13 @@
 Feature: Check BB Site Top Nav links function
 
 #  Background:
+
+
   @TopNav @MainServices @Services
   Scenario: Check the top menu link 'Services'
     Given I navigate to Betabreakers.com
     When I access the top nav "services" page link
     Then I validate the loaded page
-
-#    Moved to Services Submenu
-#  @TopNav @MainAutomated @AutomatedTesting
-#    Scenario: Check the top menu link 'Automated Testing'
-#    Given I navigate to Betabreakers.com
-#    When I access the top nav "automatedTesting" page link
-#    Then I validate the loaded page
 
   @TopNav @MainWhyTest @WhyTest
   Scenario: Check the top menu link 'Why Test?'
